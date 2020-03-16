@@ -1,8 +1,8 @@
 class Tapcode
 {
-    public void encode(String s)
+     public void encode(String s)
     {
-        String[] fjalet=s.toLowerCase().split( " ");
+        String[] fjalet=s.toLowerCase().split(" ");
 
         for (int i = 0; i < fjalet.length; i++) {
             int row, col;
@@ -44,5 +44,29 @@ class Tapcode
 
         }
 
+    }
+
+    public void decode(String input) {
+        final String[] codeAlphabet = {". .", ". ..", ". ...", ". ....", ". .....", ".. .", ".. ..", ".. ...", ".. ....", ".. .....",". ...", "... .", "... ..",
+                "... ...", "... ....", "... .....", ".... .", ".... ..", ".... ...", ".... ....", ".... .....", "..... .", "..... ..","..... ...", "..... ....","..... ....." };
+        String wordDecode="";
+        if(input == null || input.trim().isEmpty()) {
+            System.out.println("Invalid input! It must be a tapcode input");
+        }
+        String[] words = input.split("\n"); // split to lines
+        for (int i = 0; i < words.length; i++) {
+            String[] letters = words[i].split("  "); // split words to letters
+            for (int j = 0; j < letters.length; j++) {
+                for (int v = 0; v < codeAlphabet.length; v++) {
+                    if (letters[j].equals(codeAlphabet[v])) {
+                        wordDecode += (char) ((int) ('A') + v);
+                    }else  if(letters[j].equals("/")){
+                        wordDecode += " ";
+                        break;
+                    }
+                }
+            }
+        }
+        System.out.print(wordDecode.toLowerCase());
     }
 }
