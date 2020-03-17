@@ -3,7 +3,7 @@ Projekti në lëndën Siguria e të Dhënave
 Faza e parë, __Grupi27__.
 
 Ky projekt u zhvillua në gjuhën programuese:
- [Java SE Development Kit 8]((https://www.oracle.com/java/technologies/javase-jdk8-downloads.html) )
+ [Java SE Development Kit 8](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html) 
 # Qëllimi
  Një console program me emrin ***ds*** i cili pranon komanda përmes argumenteve. Programi do t’i analizojë argumentet, dhe varësisht nga përmbajtja e tyre do ta ekzekutojë ndonjërën prej komandave:
  - ***Count***  - Numëron paraqitjen e njësisë <unit> në tekst<text>. 
