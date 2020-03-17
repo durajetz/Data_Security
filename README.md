@@ -27,7 +27,9 @@ Për këtë projekt u përdorën:
   **Java programming language compiler**
   (*javac* pronounced "**java**-see")
  në **command line**(*git bash* në këtë rast):
+ 
 ![javac](https://images2.imagebam.com/d2/68/da/e122271337326893.PNG)
+
 ```Ju mund të përdorni një "wildcard" që të kompajlloni të gjitha fajllat brenda një folderi, si psh: javac *.java```
 
 # Ekzekutimi i komandave
@@ -39,6 +41,7 @@ count | unit | text
 |komanda |lines,words, letters, symbols,vowels, consonants,sentences|**Përshëndetje nga FIEK!**
 
 *Sintaksa*:
+
 ![sintaksa](https://latex.codecogs.com/png.latex?%5Clarge%20%5Cunderbrace%7B%5Ctexttt%7Bds%7D%7D_%7Bmain%7D%5Cunderbrace%7B%5Ctexttt%7Bcount%7D%7D_%7Bargs%5B0%5D%5Chspace%7B0em%7D%7D%20%5Cunderbrace%7B%5Ctexttt%7B%3Cunit%3E%7D%7D_%7Bargs%5B1%5D%5Chspace%7B0em%7D%7D%20%5Cunderbrace%7B%5Ctexttt%7B%3Ctext%3E%7D%7D_%7Bargs%5B2%5D%5Chspace%7B0em%7D%7D)
 
 **Shembull:**
@@ -70,8 +73,8 @@ count | unit | text
 ## Komanda case
 ..
 ## Komanda tap-code
-
 ***Tap-Code*** enkodon dhe dekodon `<tekstin>` sipas tabelës: 
+
 ![enter image description here](https://images2.imagebam.com/ce/82/3c/5563ab1337335448.png)
 
 > eg.
@@ -86,7 +89,9 @@ count | unit | text
  - Lexo më shumë për [Tap-Code](https://www.braingle.com/brainteasers/codes/tapcode.php).
 
 *Sintaksa*:
-![enter image description here](https://latex.codecogs.com/png.latex?%5Clarge%20%5Cunderbrace%7B%5Ctexttt%7Bds%7D%7D_%7Bmain%7D%5Cunderbrace%7B%5Ctexttt%7Btap-code%7D%7D_%7Bargs%5B0%5D%5Chspace%7B0em%7D%7D%20%5Cunderbrace%7B%5Ctexttt%7B%3Cfunksioni%3E%7D%7D_%7Bargs%5B1%5D%5Chspace%7B0em%7D%7D%20%5Cunderbrace%7B%5Ctexttt%7B%3Ctext%3E%7D%7D_%7Bargs%5B2%5D%5Chspace%7B1em%7D%7D)
+
+![enter image description here](https://images2.imagebam.com/85/b8/05/d625281337337747.png)
+
 **Shembull:**
 
 >type ***java*** before **'ds'** to run your program on cmd.
