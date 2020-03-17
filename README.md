@@ -42,7 +42,7 @@ count | unit | text
 
 *Sintaksa*:
 
-![sintaksa](https://latex.codecogs.com/png.latex?%5Clarge%20%5Cunderbrace%7B%5Ctexttt%7Bds%7D%7D_%7Bmain%7D%5Cunderbrace%7B%5Ctexttt%7Bcount%7D%7D_%7Bargs%5B0%5D%5Chspace%7B0em%7D%7D%20%5Cunderbrace%7B%5Ctexttt%7B%3Cunit%3E%7D%7D_%7Bargs%5B1%5D%5Chspace%7B0em%7D%7D%20%5Cunderbrace%7B%5Ctexttt%7B%3Ctext%3E%7D%7D_%7Bargs%5B2%5D%5Chspace%7B0em%7D%7D)
+![sintaksa](https://images2.imagebam.com/1e/37/c2/c502b81337338739.png)
 
 **Shembull:**
 
