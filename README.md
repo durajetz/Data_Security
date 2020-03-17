@@ -78,11 +78,11 @@ count | unit | text
 ![enter image description here](https://images2.imagebam.com/ce/82/3c/5563ab1337335448.png)
 
 > eg.
+```Shkronja 'N' -> ... ...``` Rreshti 3 - Shtylla 3
 
 |plaintext| ciphertext |
 |--|--|
 | neser |  ... ...  . .....  .... ...  . ..... .... ..|
-```Shkronja 'N' -> ... ...``` Rreshti 3 - Shtylla 3
 
  - Shkronjat ndërmjet vete ndahen me nga dy space
  - Ndërsa fjalet ndahen me : "  /  "
