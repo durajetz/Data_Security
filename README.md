@@ -86,7 +86,7 @@ count | unit | text
  - Lexo më shumë për [Tap-Code](https://www.braingle.com/brainteasers/codes/tapcode.php).
 
 *Sintaksa*:
-![enter image description here](https://latex.codecogs.com/png.latex?%5Clarge%20%5Cunderbrace%7B%5Ctexttt%7Bds%7D%7D_%7Bmain%7D%5Cunderbrace%7B%5Ctexttt%7Btap-code%7D%7D_%7Bargs%5B0%5D%5Chspace%7B0em%7D%7D%20%5Cunderbrace%7B%5Ctexttt%7B%3Cfunksioni%3E%7D%7D_%7Bargs%5B1%5D%5Chspace%7B0em%7D%7D%20%5Cunderbrace%7B%5Ctexttt%7B%3Ctext%3E%7D%7D_%7Bargs%5B2%5D%5Chspace%7B0em%7D%7D)
+![enter image description here](https://latex.codecogs.com/png.latex?%5Clarge%20%5Cunderbrace%7B%5Ctexttt%7Bds%7D%7D_%7Bmain%7D%5Cunderbrace%7B%5Ctexttt%7Btap-code%7D%7D_%7Bargs%5B0%5D%5Chspace%7B0em%7D%7D%20%5Cunderbrace%7B%5Ctexttt%7B%3Cfunksioni%3E%7D%7D_%7Bargs%5B1%5D%5Chspace%7B0em%7D%7D%20%5Cunderbrace%7B%5Ctexttt%7B%3Ctext%3E%7D%7D_%7Bargs%5B2%5D%5Chspace%7B1em%7D%7D)
 **Shembull:**
 
 >type ***java*** before **'ds'** to run your program on cmd.
@@ -136,7 +136,7 @@ $ ./ds.sh count lines "Pershendetje nga FIEK!"
 Lines: 1
 
 $ ./ds.sh tap-code encode "this is a code"
-
+.. ....  /  . ...  . .  ... ...  /  .. .  ... .  ..... ....
 
 
 ```
@@ -144,5 +144,5 @@ $ ./ds.sh tap-code encode "this is a code"
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjUwNTUyODUwXX0=
+eyJoaXN0b3J5IjpbODYzMTUzNzg3XX0=
 -->
