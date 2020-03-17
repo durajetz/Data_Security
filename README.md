@@ -99,7 +99,7 @@ count | unit | text
 ```$ ds tap-code encode "i can fly"```
 ![enter image description here](https://images2.imagebam.com/8f/b9/06/029e391337336916.PNG)
 
-```$ ds tap-code encode ".. ....  /  . ...  . .  ... ...  /  .. .  ... .  ..... ...."```
+```$ ds tap-code decode ".. ....  /  . ...  . .  ... ...  /  .. .  ... .  ..... ...."```
 ![enter image description here](https://images2.imagebam.com/7b/03/60/d12f111337336918.PNG)
 
 
