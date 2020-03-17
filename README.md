@@ -93,8 +93,8 @@ count | unit | text
 
 ```$ ds tap-code encode "i can fly"```
 ![enter image description here](https://images2.imagebam.com/8f/b9/06/029e391337336916.PNG)
-```$ ds tap-code encode ".. ....  /  . ...  . .  ... ...  /  .. .  ... .  ..... ...."```
 
+```$ ds tap-code encode ".. ....  /  . ...  . .  ... ...  /  .. .  ... .  ..... ...."```
 ![enter image description here](https://images2.imagebam.com/7b/03/60/d12f111337336918.PNG)
 
 
@@ -138,10 +138,11 @@ Lines: 1
 $ ./ds.sh tap-code encode "this is a code"
 
 
+
 ```
 
  
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMDI4MTgyMDRdfQ==
+eyJoaXN0b3J5IjpbMjUwNTUyODUwXX0=
 -->
