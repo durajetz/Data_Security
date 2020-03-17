@@ -23,7 +23,7 @@ Për këtë projekt u përdorën:
 # Instruksionet
 1. Vendosja e tri komandave(***count,case,tap-code**)* dhe programit ***ds*** në një directory të vetëm,pra:
 ![Directory në këtë rast: ProjektiSiguri/](https://images2.imagebam.com/e6/2a/ac/1a09b71337326461.PNG)
-2. Kompajllimi me anë të:
+2. Kompajllimi me anë të
   **Java programming language compiler**
   (*javac* pronounced "**java**-see")
  në **command line**(*git bash* në këtë rast):
