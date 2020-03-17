@@ -57,7 +57,10 @@ class Tapcode
         for (int i = 0; i < words.length; i++) {
             String[] letters = words[i].split("  "); // split words to letters
             for (int j = 0; j < letters.length; j++) {
-                for (int v = 0; v < codeAlphabet.length; v++) {
+                 for (int v = 0; v < codeAlphabet.length; v++) {
+                    if(letters[j].equals(". ...")){ // pa qet kusht kur eshte inputi ". ..." ,output del "ck"
+                        wordDecode += 'c';
+                    break;}
                     if (letters[j].equals(codeAlphabet[v])) {
                         wordDecode += (char) ((int) ('A') + v);
                     }else  if(letters[j].equals("/")){
