@@ -39,7 +39,7 @@ count | unit | text
 --- | --- | ---
 |komanda |lines,words, letters, symbols,vowels, consonants,sentences|**Përshëndetje nga FIEK!**
 
-<p align="center"><em>Sintaksa:</em></p>
+<p align="center"><b><em>Sintaksa :</em></b></br>
 <p align="center"><img src="https://images2.imagebam.com/76/93/f9/c0f9341337430291.png" alt="sintaksa" style="width: 250px;"/></p>
 
 **Shembull:**
@@ -74,7 +74,7 @@ count | unit | text
 | :------ | --------------------------------------------------- | -------------------------- |
 | komanda | upper,lower,capitalize,inverse,alternating,sentence | **Përshëndetje nga FIEK!** |
 
-<p align="center"><em>Sintaksa:</em></p>
+<p align="center"><b><em>Sintaksa :</em></b></br>
 <p align="center"><img src="https://images2.imagebam.com/d3/06/91/1d68e51337430295.png" alt="sintaksa" style="width: 250px;"/></p>
 
 **Shembull:**
@@ -110,19 +110,16 @@ count | unit | text
  - Ndërsa fjalet ndahen me : "  /  "
  - Lexo më shumë për [Tap-Code](https://www.braingle.com/brainteasers/codes/tapcode.php).
 
-*Sintaksa*:
-
-![enter image description here](https://images2.imagebam.com/85/b8/05/d625281337337747.png)
+<p align="center"><b><em>Sintaksa :</em></b></br>
+ <img src="https://images2.imagebam.com/bb/83/d1/d52e831337442864.png" alt="" width="400px"></p>
 
 **Shembull:**
 
 >type ***java*** before **'ds'** to run your program on cmd.
 
-```$ ds tap-code encode "i can fly"```
-![enter image description here](https://images2.imagebam.com/8f/b9/06/029e391337336916.PNG)
+```$ ds tap-code encode "i can fly"```</br><img src="https://images2.imagebam.com/8f/b9/06/029e391337336916.PNG" alt="" width="600px">
 
-```$ ds tap-code decode ".. ....  /  . ...  . .  ... ...  /  .. .  ... .  ..... ...."```
-![enter image description here](https://images2.imagebam.com/7b/03/60/d12f111337336918.PNG)
+```$ ds tap-code decode ".. ....  /  . ...  . .  ... ...  /  .. .  ... .  ..... ...."```</br><img src="https://images2.imagebam.com/7b/03/60/d12f111337336918.PNG" alt="" width="600px">
 
 
 
@@ -168,8 +165,26 @@ $ ./ds.sh tap-code encode "this is a code"
 
 ```
 
- 
+ ## Falënderim për
 
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbODYzMTUzNzg3XX0=
--->
+Disa nga meritorët e suksesit dhe përfundimit të kësaj faze të parë të Projektit :
+
+* [Stack Overflow](https://stackoverflow.com/)
+  * [Metoda capitalize](https://stackoverflow.com/questions/1892765/how-to-capitalize-the-first-character-of-each-word-in-a-string/1892778?fbclid=IwAR0yYzxmvyVgsi3uL8Of39I4NZvKEM-17GBLM4jTVW2SlqSdi71epYk22AI)
+  
+* Ass. *Edon Gashi* (i cili ka qenë në dispozicion çdo kohë për t'iu përgjigjur pyetjeve tona)
+
+## Autorët
+
+* [Aurel Demiraj](mailto:aureldem1@outlook.com)
+* [Besar Pallush](mailto:besarp5@gmail.com)
+* [Durajet Mustafa](mailto:eti1375@gmail.com)
+
+___
+<small><i>Përshkrimi i<a href='https://www.dropbox.com/s/aryposlxmi1qctk/grupi-27.pdf?dl=0'> projektit</a></i></small>
+
+
+  
+
+
+
