@@ -174,7 +174,7 @@ Disa nga meritorët e suksesit dhe përfundimit të kësaj faze të parë të Pr
   
 * Ass. *Edon Gashi* (i cili ka qenë në dispozicion çdo kohë për t'iu përgjigjur pyetjeve tona)
 
-## Autorët
+# Autorët
 
 * [Aurel Demiraj](mailto:aureldem1@outlook.com)
 * [Besar Pallush](mailto:besarp5@gmail.com)
