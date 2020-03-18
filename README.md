@@ -172,7 +172,7 @@ Disa nga meritorët e suksesit dhe përfundimit të kësaj faze të parë të Pr
 * [Stack Overflow](https://stackoverflow.com/)
   * [Metoda capitalize](https://stackoverflow.com/questions/1892765/how-to-capitalize-the-first-character-of-each-word-in-a-string/1892778?fbclid=IwAR0yYzxmvyVgsi3uL8Of39I4NZvKEM-17GBLM4jTVW2SlqSdi71epYk22AI)
   
-* Ass. *Edon Gashi* (i cili ka qenë në dispozicion çdo kohë për t'iu përgjigjur pyetjeve tona)
+* Ass. *Edon Gashi* (i cili ka qenë në dispozicion çdo kohë për t'iu përgjigjur paqartësive tona)
 
 # Autorët
 
