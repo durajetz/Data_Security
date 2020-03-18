@@ -110,8 +110,8 @@ count | unit | text
  - Ndërsa fjalet ndahen me : "  /  "
  - Lexo më shumë për [Tap-Code](https://www.braingle.com/brainteasers/codes/tapcode.php).
 
-<p align="center"><b><em>Sintaksa :</em></b></br>
- <img src="https://images2.imagebam.com/bb/83/d1/d52e831337442864.png" alt="" width="400px"></p>
+ <p align="center"><b><em>Sintaksa :</em></b></br>
+<p align="center"><img src="https://images2.imagebam.com/bb/83/d1/d52e831337442864.png" alt="sintaksa" style="width: 250px;"/></p>
 
 **Shembull:**
 
