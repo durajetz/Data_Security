@@ -181,7 +181,8 @@ Disa nga meritorët e suksesit dhe përfundimit të kësaj faze të parë të Pr
 * [Durajet Mustafa](mailto:eti1375@gmail.com)
 
 ___
-<small><i>Përshkrimi i<a href='https://www.dropbox.com/s/aryposlxmi1qctk/grupi-27.pdf?dl=0'> projektit</a></i></small>
+<small><i>Përshkrimi i<a href='https://www.dropbox.com/s/aryposlxmi1qctk/grupi-27.pdf?dl=0'> projektit</a></i>,</br>
+Regards Grupi27 (Sferat e Dragoit).</small>
 
 
   
