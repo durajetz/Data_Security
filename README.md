@@ -28,8 +28,7 @@ Për këtë projekt u përdorën:
   (*javac* pronounced "**java**-see")
  në **command line**(*git bash* në këtë rast):
  
-![javac](https://images2.imagebam.com/d2/68/da/e122271337326893.PNG)
-
+![javac](https://images2.imagebam.com/d2/68/da/e122271337326893.PNG)</br>
 ```Ju mund të përdorni një "wildcard" që të kompajlloni të gjitha fajllat brenda një folderi, si psh: javac *.java```
 
 # Ekzekutimi i komandave
@@ -40,38 +39,61 @@ count | unit | text
 --- | --- | ---
 |komanda |lines,words, letters, symbols,vowels, consonants,sentences|**Përshëndetje nga FIEK!**
 
-*Sintaksa*:
-
-![sintaksa](https://images2.imagebam.com/1e/37/c2/c502b81337338739.png)
+<p align="center"><em>Sintaksa:</em></p>
+<p align="center"><img src="https://images2.imagebam.com/76/93/f9/c0f9341337430291.png" alt="sintaksa" style="width: 250px;"/></p>
 
 **Shembull:**
 
 >type ***java*** before **'ds'** to run your program on cmd.
 
-```$ ds count lines "Pershendetje nga FIEK!"```
-![lines](https://images2.imagebam.com/47/d0/50/ae6b4b1337331187.PNG)
+```$ ds count lines "Pershendetje nga FIEK!"```</br>
+<img src="https://images2.imagebam.com/47/d0/50/ae6b4b1337331187.PNG" alt="" width="400px">
 
 
-```$ ds count words "Pershendetje nga FIEK!"```
-![words](https://images2.imagebam.com/77/13/00/33824b1337331397.PNG)
+```$ ds count words "Pershendetje nga FIEK!"```</br>
+<img src="https://images2.imagebam.com/77/13/00/33824b1337331397.PNG" alt="" width="400px">
 
-```$ ds count letters "Pershendetje nga FIEK!"```
-![](https://images2.imagebam.com/9a/f1/af/9f9ab01337332291.PNG)
+```$ ds count letters "Pershendetje nga FIEK!"```</br>
+<img src="https://images2.imagebam.com/9a/f1/af/9f9ab01337332291.PNG" alt="" width="400px">
 
-```$ ds count symbols "Pershendetje nga FIEK!"```
-![](https://images2.imagebam.com/7d/93/e4/4773821337332618.png)
+```$ ds count symbols "Pershendetje nga FIEK!"```</br>
+<img src="https://images2.imagebam.com/7d/93/e4/4773821337332618.png" alt="" width="400px">
 
-```$ ds count vowels "Pershendetje nga FIEK!"```
-![](https://images2.imagebam.com/ce/3f/b8/41d0821337332764.png)
+```$ ds count vowels "Pershendetje nga FIEK!"```</br>
+<img src="https://images2.imagebam.com/ce/3f/b8/41d0821337332764.png" alt="" width="400px"/>
 
-```$ ds count consonants "Pershendetje nga FIEK!"```
-![](https://images2.imagebam.com/9c/03/9a/bc3a2a1337333122.PNG)
+```$ ds count consonants "Pershendetje nga FIEK!"```</br>
+<img src="https://images2.imagebam.com/9c/03/9a/bc3a2a1337333122.PNG" alt="" width="400px">
 
-```$ ds count sentences "Pershendetje. nga FIEK!"```
-![enter image description here](https://images2.imagebam.com/ae/57/40/f7ccf41337333290.PNG)
+```$ ds count sentences "Pershendetje. nga FIEK!"```</br>
+<img src="https://images2.imagebam.com/ae/57/40/f7ccf41337333290.PNG" alt="" width="400px">
 
 ## Komanda case
-..
+
+| case    | case(funksioni)                                     | text                       |
+| :------ | --------------------------------------------------- | -------------------------- |
+| komanda | upper,lower,capitalize,inverse,alternating,sentence | **Përshëndetje nga FIEK!** |
+
+<p align="center"><em>Sintaksa:</em></p>
+<p align="center"><img src="https://images2.imagebam.com/d3/06/91/1d68e51337430295.png" alt="sintaksa" style="width: 250px;"/></p>
+
+**Shembull:**
+
+>type ***java*** before **'ds'** to run your program on cmd.
+
+```$ ds case upper "Pershendetje nga FIEK!"```</br><img src="https://images2.imagebam.com/27/2c/98/7800d01337426620.png" alt="" width="400px">
+
+```$ ds case lower "Pershendetje nga FIEK!"```</br><img src="https://images2.imagebam.com/f7/f2/1f/0960e31337426631.PNG" alt="" width="400px">
+
+```$ ds case capitalize "Pershendetje nga FIEK!"```</br><img src="https://images2.imagebam.com/a5/87/46/36a01d1337426616.PNG" alt="" width="400px">
+
+```$ ds count inverse "Pershendetje nga FIEK!"```</br><img src="https://images2.imagebam.com/92/d8/f6/1b246e1337426624.PNG" alt="" width="400px">
+
+```$ ds count alternating "Pershendetje nga FIEK!"```</br><img src="https://images2.imagebam.com/9c/07/19/0546911337426607.PNG" alt="" width="400px">
+
+```$ ds count sentence "pershendetje, Fjalia E pare. FJALIA E DYTE! fjAlia E trEte."```</br><img src="https://images2.imagebam.com/80/be/b3/3aa1981337426637.PNG" alt="" width="400px">
+
+
 ## Komanda tap-code
 ***Tap-Code*** enkodon dhe dekodon `<tekstin>` sipas tabelës: 
 
