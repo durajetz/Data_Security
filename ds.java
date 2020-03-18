@@ -40,8 +40,6 @@ public class ds {
 
                 }
             }
-           //
-             
             else System.out.println("CorrectWay: <count,case,tap-code> <function> <text>");
         }else System.err.println("No arguments provided! Expect exactly 3");
 
