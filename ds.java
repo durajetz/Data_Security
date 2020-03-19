@@ -1,6 +1,7 @@
 public class ds {
     public static void main(String[] args) {
         Count c = new Count();
+	Case c2 = new Case();
         Tapcode t = new Tapcode();
         if (args.length == 3){
 //            String str = args[0];
