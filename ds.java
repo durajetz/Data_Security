@@ -1,5 +1,7 @@
+import java.security.*;
+
 public class ds {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Count c = new Count();
         Tapcode t = new Tapcode();
         Case c2 = new Case();
