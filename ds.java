@@ -5,11 +5,12 @@ public class ds {
         Count c = new Count();
         Tapcode t = new Tapcode();
         Case c2 = new Case();
+        Key k1 = new Key();
 
-        if(args.length != 3) {
-            System.out.println("No arguments provided! Expect exactly 3");
-            System.exit(1);
-        }
+//        if(args.length != 3) {
+//            System.out.println("No arguments provided! Expect exactly 3");
+//            System.exit(1);
+//        } -----> to be changed soon
         
         if (args[0].equalsIgnoreCase("count")) {
             switch (args[1].toLowerCase()) {
@@ -71,7 +72,10 @@ public class ds {
                     break;
                 default:
                     System.out.println("CorrectWay: <case(lower,upper,capitalize,inverse,alternating)> <text>");
-            }
-        } else System.out.println("CorrectWay: <count,case,tap-code> <function> <text>");
+            }else if (args[0].equalsIgnoreCase("create-user")) {
+                k1.saveFile(args[1]);
+            } else if (args[0].equalsIgnoreCase("delete-user")) {
+                k1.deleteFile(args[1]);
+        } else System.out.println("Invalid command!");
     }
 }
