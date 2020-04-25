@@ -117,4 +117,74 @@ class Key {
             }
         } else System.out.println("Gabim: Celesi '" + argumenti + "' nuk ekziston.");
     }
+
+    public void searchFile(String argumenti, String argumenti1) throws Exception {
+        KeyPair keyPair = generateKey();
+        PublicKey publicKey = keyPair.getPublic();
+        String searchword = "<P>";
+        File f = new File(pa + argumenti1 + ".xml");
+        File f1 = new File(pa + argumenti1 + ".pub.xml");
+
+        if (f.exists() || f1.exists()) {
+            System.out.println("Gabim: Celesi '" + argumenti1 + "' ekziston paraprakisht.");
+            return;
+        } else if (argumenti.startsWith("http://") || argumenti.startsWith("https://")) {
+            getRequest(argumenti, argumenti1);
+            return;
+        } else if (!argumenti.endsWith(".xml")) {
+            System.out.println("Gabim: Fajlli i dhene nuk eshte celes valid.");
+            return;
+        }
+
+        try {
+            FileWriter fw = new FileWriter(pa + argumenti1 + ".xml");
+            String line = "";
+            BufferedReader br = new BufferedReader(new FileReader(pa1 + argumenti));
+            while ((line = br.readLine()) != null) {
+                boolean bool = line.contains(searchword);
+                if (!bool) {
+                    fw.write(line);
+                } else if (bool) {
+                    fw.write(line);
+                    writeFile(getPublicKeyAsXml(publicKey), s + argumenti1 + ".pub.xml");
+                }
+            }
+            br.close();
+            fw.close();
+        } catch (FileNotFoundException ex) {
+            System.err.println("Gabim: Celesi '" + argumenti + "'" + " nuk ekziston.");
+        }
+    }
+
+
+    public void getRequest(String argumenti, String argumenti1) throws Exception {
+        KeyPair keyPair = generateKey();
+        PublicKey publicKey = keyPair.getPublic();
+        String searchword = "<P>";
+
+        URL urlObj = new URL(argumenti);
+        HttpURLConnection con = (HttpURLConnection) urlObj.openConnection();
+        con.setRequestMethod("GET");
+        InputStream is = con.getInputStream();
+
+        String lloji = ".xml";
+        try {
+            FileWriter fw = new FileWriter(pa + argumenti1 + lloji);
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                boolean bool = line.contains(searchword);
+                if (!bool) {
+                    fw.write(line);
+                } else if (bool) {
+                    fw.write(line);
+                    writeFile(getPublicKeyAsXml(publicKey), s + argumenti1 + ".pub.xml");
+                }
+            }
+            br.close();
+            fw.close();
+        } catch (Exception e) {
+            System.out.println("Error:" + e);
+        }
+    }
 }
