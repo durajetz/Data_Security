@@ -99,4 +99,22 @@ class Key {
                     "Eshte krijuar celesi publik 'keys/" + argumenti + ".pub.xml'");
         } else System.out.println("Gabim: Celesi '" + argumenti + "' ekziston paraprakisht.");
     }
+
+    public void deleteFile(String argumenti) {
+        File folder = new File(pa);
+        Path path = Paths.get(pa + argumenti + ".xml");
+        Path path1 = Paths.get(pa + argumenti + ".pub.xml");
+
+        if (Files.exists(path) || Files.exists(path1)) {
+            for (File file : folder.listFiles()) {
+                if (file.getName().equals(argumenti + ".pub.xml")) {
+                    file.delete();
+                    System.out.println("Eshte larguar celesi public 'keys/" + file.getName() + "'");
+                } else if (file.getName().equals(argumenti + ".xml")) {
+                    file.delete();
+                    System.out.println("Eshte larguar celesi privat 'keys/" + file.getName() + "'");
+                }
+            }
+        } else System.out.println("Gabim: Celesi '" + argumenti + "' nuk ekziston.");
+    }
 }
