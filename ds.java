@@ -89,6 +89,6 @@ public class ds {
                     case "privat": k1.copyFile(args[2], ".xml", args[3],args[1]);break;
                     default: System.out.println("CorrectWay: <public|private> <name> [file]");}
             }
-            else System.out.println("Invalid command!");
+           }else System.out.println("Invalid command!");
     }
 }
