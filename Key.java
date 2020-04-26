@@ -136,6 +136,16 @@ class Key {
         System.out.println(readFile(pa + argumenti + ext));
     }
     
+    public void copyFile(String argumenti, String ext, String argumenti1, String celesi) throws Exception {
+        try {
+            String file = readFile(pa + argumenti + ext);
+            writeFile(file, pa1 + argumenti1);
+            System.out.println("Celesi " + celesi + " u ruajt ne fajllin '" + argumenti1 + "'.");
+        } catch (Exception e) {
+            System.err.println("Gabim: Celesi " + celesi + " '" + argumenti + "'" + " nuk ekziston.");
+        }
+    }
+    
     public void searchFile(String argumenti, String argumenti1) throws Exception {
         KeyPair keyPair = generateKey();
         PublicKey publicKey = keyPair.getPublic();
