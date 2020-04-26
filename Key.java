@@ -73,12 +73,21 @@ class Key {
         return keyPair;
     }
 
-    public void writeFile(String text, String filename) throws Exception {
-        try (PrintWriter writer = new PrintWriter(filename)) {
-            writer.write(text);
+    public void writeFile(String content, String path) throws Exception {
+        try {
+            PrintWriter writer = new PrintWriter(path);
+            writer.write(content);
+            writer.close();
+        } catch (Exception e) {
+            System.err.println("Error: " + e);
         }
     }
 
+    public String readFile(String path) throws Exception {
+        String content = new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
+        return content;
+    }
+    
     public void saveFile(String argumenti) throws Exception{
         KeyPair keyPair = generateKey();
 
