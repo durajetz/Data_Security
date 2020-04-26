@@ -76,6 +76,19 @@ public class ds {
                 k1.saveFile(args[1]);
             } else if (args[0].equalsIgnoreCase("delete-user")) {
                 k1.deleteFile(args[1]);
-        } else System.out.println("Invalid command!");
+        } else if(args[0].equalsIgnoreCase("export-key")){
+            if(args.length == 3){
+                switch (args[1].toLowerCase()) {
+                    case "public": k1.exportFile(args[2], ".pub.xml", args[1]);break;
+                    case "privat": k1.exportFile(args[2], ".xml", args[1]);break;
+                    default: System.out.println("CorrectWay: <public|private> <name> [file]");
+                }
+            }else {
+                switch (args[1].toLowerCase()){
+                    case "public": k1.copyFile(args[2], ".pub.xml", args[3],args[1]);break;
+                    case "privat": k1.copyFile(args[2], ".xml", args[3],args[1]);break;
+                    default: System.out.println("CorrectWay: <public|private> <name> [file]");}
+            }
+            else System.out.println("Invalid command!");
     }
 }
