@@ -126,7 +126,16 @@ class Key {
             }
         } else System.out.println("Gabim: Celesi '" + argumenti + "' nuk ekziston.");
     }
-
+    
+    public void exportFile(String argumenti, String ext, String celesi) throws Exception {
+        File f = new File(pa + argumenti + ext);
+        if (!f.exists()) {
+            System.out.println("Gabim: Celesi " + celesi + " '" + argumenti + "'" + " nuk ekziston.");
+            return;
+        }
+        System.out.println(readFile(pa + argumenti + ext));
+    }
+    
     public void searchFile(String argumenti, String argumenti1) throws Exception {
         KeyPair keyPair = generateKey();
         PublicKey publicKey = keyPair.getPublic();
