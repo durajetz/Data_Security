@@ -146,10 +146,7 @@ class Key {
         }
     }
     
-    public void searchFile(String argumenti, String argumenti1) throws Exception {
-        KeyPair keyPair = generateKey();
-        PublicKey publicKey = keyPair.getPublic();
-        String searchword = "<P>";
+    public void importKey(String argumenti, String argumenti1) throws Exception {
         File f = new File(pa + argumenti1 + ".xml");
         File f1 = new File(pa + argumenti1 + ".pub.xml");
 
@@ -165,54 +162,41 @@ class Key {
         }
 
         try {
-            FileWriter fw = new FileWriter(pa + argumenti1 + ".xml");
-            String line = "";
-            BufferedReader br = new BufferedReader(new FileReader(pa1 + argumenti));
-            while ((line = br.readLine()) != null) {
-                boolean bool = line.contains(searchword);
-                if (!bool) {
-                    fw.write(line);
-                } else if (bool) {
-                    fw.write(line);
-                    writeFile(getPublicKeyAsXml(publicKey), s + argumenti1 + ".pub.xml");
-                }
-            }
-            br.close();
-            fw.close();
-        } catch (FileNotFoundException ex) {
-            System.err.println("Gabim: Celesi '" + argumenti + "'" + " nuk ekziston.");
+            findKey(readFile(pa1 + argumenti), argumenti, argumenti1);
+        } catch (Exception e) {
+            System.err.println("Gabim: fajlli '" + argumenti + "' nuk ekziston.");
         }
     }
 
-
-    public void getRequest(String argumenti, String argumenti1) throws Exception {
+    public void findKey(String content, String argumenti, String argumenti1) throws Exception {
         KeyPair keyPair = generateKey();
         PublicKey publicKey = keyPair.getPublic();
         String searchword = "<P>";
-
-        URL urlObj = new URL(argumenti);
-        HttpURLConnection con = (HttpURLConnection) urlObj.openConnection();
-        con.setRequestMethod("GET");
-        InputStream is = con.getInputStream();
-
-        String lloji = ".xml";
-        try {
-            FileWriter fw = new FileWriter(pa + argumenti1 + lloji);
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            String line = "";
-            while ((line = br.readLine()) != null) {
-                boolean bool = line.contains(searchword);
-                if (!bool) {
-                    fw.write(line);
-                } else if (bool) {
-                    fw.write(line);
-                    writeFile(getPublicKeyAsXml(publicKey), s + argumenti1 + ".pub.xml");
-                }
-            }
-            br.close();
-            fw.close();
-        } catch (Exception e) {
-            System.out.println("Error:" + e);
+        boolean isPrivate = content.contains(searchword);
+        String extension = isPrivate ? ".xml" : ".pub.xml";
+        if (!isPrivate) {
+            writeFile(content, pa + argumenti1 + extension);
+            System.out.println("Celesi publik u ruajt ne fajllin 'keys/" + argumenti1 + ".pub.xml'.");
+        } else {
+            writeFile(content, pa + argumenti1 + extension);
+            writeFile(getPublicKeyAsXml(publicKey), s + argumenti1 + ".pub.xml");
+            System.out.println("Celesi privat u ruajt ne fajllin 'keys/" + argumenti1 + ".pub.xml'.\n" +
+                    "Celesi publik u ruajt ne fajllin 'keys/" + argumenti1 + ".pub.xml'.");
         }
     }
+
+    public void getRequest(String argumenti, String argumenti1) throws Exception {
+        try {
+            URL urlObj = new URL(argumenti);
+            HttpURLConnection con = (HttpURLConnection) urlObj.openConnection();
+            con.setRequestMethod("GET");
+            InputStream is = con.getInputStream();
+            String content = new BufferedReader(new InputStreamReader(is)).lines().collect(Collectors.joining("\n"));
+            findKey(content, argumenti, argumenti1);
+        } catch (Exception e) {
+            System.err.println("Error: " + e);
+        }
+    }  
+
+  
 }
