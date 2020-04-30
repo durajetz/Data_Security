@@ -87,7 +87,7 @@ class Key {
         String content = new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
         return content;
     }
-    
+
     public void saveFile(String argumenti) throws Exception{
         KeyPair keyPair = generateKey();
 
@@ -195,5 +195,28 @@ class Key {
         } catch (Exception e) {
             System.out.println("Error:" + e);
         }
+    }
+
+    public PublicKey returnPublicKey(String argumenti) throws Exception {
+        SAXBuilder builder = new SAXBuilder();
+        File xmlProductFile = new File(pa + argumenti + ".pub.xml");
+        Document document = builder.build(xmlProductFile);
+        Element root = document.getRootElement();
+
+        Element modulusElem = root.getChild("Modulus");
+        Element exponentElem = root.getChild("Exponent");
+
+        byte[] modBytes = Base64.getDecoder().decode(modulusElem.getText().trim());
+        byte[] expBytes = Base64.getDecoder().decode(exponentElem.getText().trim());
+
+        BigInteger modules = new BigInteger(1, modBytes);
+        BigInteger exponent = new BigInteger(1, expBytes);
+
+
+        KeyFactory factory = KeyFactory.getInstance("RSA");
+        RSAPublicKeySpec pubSpec = new RSAPublicKeySpec(modules, exponent);
+        PublicKey pubKey = factory.generatePublic(pubSpec);
+
+        return pubKey;
     }
 }
