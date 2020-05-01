@@ -88,7 +88,7 @@ class Key {
         return content;
     }
 
-    public void saveFile(String argumenti) throws Exception{
+    public void saveFile(String argumenti) throws Exception {
         KeyPair keyPair = generateKey();
 
         PrivateKey privateKey = keyPair.getPrivate();
@@ -127,10 +127,26 @@ class Key {
         } else System.out.println("Gabim: Celesi '" + argumenti + "' nuk ekziston.");
     }
 
-    public void searchFile(String argumenti, String argumenti1) throws Exception {
-        KeyPair keyPair = generateKey();
-        PublicKey publicKey = keyPair.getPublic();
-        String searchword = "<P>";
+    public void exportFile(String argumenti, String ext, String celesi) throws Exception {
+        File f = new File(pa + argumenti + ext);
+        if (!f.exists()) {
+            System.out.println("Gabim: Celesi " + celesi + " '" + argumenti + "'" + " nuk ekziston.");
+            return;
+        }
+        System.out.println(readFile(pa + argumenti + ext));
+    }
+
+    public void copyFile(String argumenti, String ext, String argumenti1, String celesi) throws Exception {
+        try {
+            String file = readFile(pa + argumenti + ext);
+            writeFile(file, pa1 + argumenti1);
+            System.out.println("Celesi " + celesi + " u ruajt ne fajllin '" + argumenti1 + "'.");
+        } catch (Exception e) {
+            System.err.println("Gabim: Celesi " + celesi + " '" + argumenti + "'" + " nuk ekziston.");
+        }
+    }
+
+    public void importKey(String argumenti, String argumenti1) throws Exception {
         File f = new File(pa + argumenti1 + ".xml");
         File f1 = new File(pa + argumenti1 + ".pub.xml");
 
@@ -146,54 +162,39 @@ class Key {
         }
 
         try {
-            FileWriter fw = new FileWriter(pa + argumenti1 + ".xml");
-            String line = "";
-            BufferedReader br = new BufferedReader(new FileReader(pa1 + argumenti));
-            while ((line = br.readLine()) != null) {
-                boolean bool = line.contains(searchword);
-                if (!bool) {
-                    fw.write(line);
-                } else if (bool) {
-                    fw.write(line);
-                    writeFile(getPublicKeyAsXml(publicKey), s + argumenti1 + ".pub.xml");
-                }
-            }
-            br.close();
-            fw.close();
-        } catch (FileNotFoundException ex) {
-            System.err.println("Gabim: Celesi '" + argumenti + "'" + " nuk ekziston.");
+            findKey(readFile(pa1 + argumenti), argumenti, argumenti1);
+        } catch (Exception e) {
+            System.err.println("Gabim: fajlli '" + argumenti + "' nuk ekziston.");
         }
     }
 
-
-    public void getRequest(String argumenti, String argumenti1) throws Exception {
+    public void findKey(String content, String argumenti, String argumenti1) throws Exception {
         KeyPair keyPair = generateKey();
         PublicKey publicKey = keyPair.getPublic();
         String searchword = "<P>";
+        boolean isPrivate = content.contains(searchword);
+        String extension = isPrivate ? ".xml" : ".pub.xml";
+        if (!isPrivate) {
+            writeFile(content, pa + argumenti1 + extension);
+            System.out.println("Celesi publik u ruajt ne fajllin 'keys/" + argumenti1 + ".pub.xml'.");
+        } else {
+            writeFile(content, pa + argumenti1 + extension);
+            writeFile(getPublicKeyAsXml(publicKey), s + argumenti1 + ".pub.xml");
+            System.out.println("Celesi privat u ruajt ne fajllin 'keys/" + argumenti1 + ".pub.xml'.\n" +
+                    "Celesi publik u ruajt ne fajllin 'keys/" + argumenti1 + ".pub.xml'.");
+        }
+    }
 
-        URL urlObj = new URL(argumenti);
-        HttpURLConnection con = (HttpURLConnection) urlObj.openConnection();
-        con.setRequestMethod("GET");
-        InputStream is = con.getInputStream();
-
-        String lloji = ".xml";
+    public void getRequest(String argumenti, String argumenti1) throws Exception {
         try {
-            FileWriter fw = new FileWriter(pa + argumenti1 + lloji);
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            String line = "";
-            while ((line = br.readLine()) != null) {
-                boolean bool = line.contains(searchword);
-                if (!bool) {
-                    fw.write(line);
-                } else if (bool) {
-                    fw.write(line);
-                    writeFile(getPublicKeyAsXml(publicKey), s + argumenti1 + ".pub.xml");
-                }
-            }
-            br.close();
-            fw.close();
+            URL urlObj = new URL(argumenti);
+            HttpURLConnection con = (HttpURLConnection) urlObj.openConnection();
+            con.setRequestMethod("GET");
+            InputStream is = con.getInputStream();
+            String content = new BufferedReader(new InputStreamReader(is)).lines().collect(Collectors.joining("\n"));
+            findKey(content, argumenti, argumenti1);
         } catch (Exception e) {
-            System.out.println("Error:" + e);
+            System.err.println("Error: " + e);
         }
     }
 
@@ -219,4 +220,28 @@ class Key {
 
         return pubKey;
     }
+
+    public PrivateKey returnPrivateKey(String argumenti) throws Exception {
+        SAXBuilder builder = new SAXBuilder();
+        File xmlPrivateFile = new File(pa + argumenti + ".xml");
+        Document document = builder.build(xmlPrivateFile);
+        Element root = document.getRootElement();
+
+        Element modulusElem = root.getChild("Modulus");
+        Element dElem = root.getChild("D");
+
+        byte[] modBytes = Base64.getDecoder().decode(modulusElem.getText().trim());
+        byte[] dBytes = Base64.getDecoder().decode(dElem.getText().trim());
+
+        BigInteger modules = new BigInteger(1, modBytes);
+        BigInteger d = new BigInteger(1, dBytes);
+
+        KeyFactory factory = KeyFactory.getInstance("RSA");
+
+        RSAPrivateKeySpec privSpec = new RSAPrivateKeySpec(modules, d);
+        PrivateKey privKey = factory.generatePrivate(privSpec);
+
+        return privKey;
+    }
 }
+
