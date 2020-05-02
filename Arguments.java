@@ -6,7 +6,7 @@ class Arguments {
 
     public void count(String[] args) {
         if (args.length != 3) {
-            System.out.println("wrong args");
+            System.out.println("Wrong number of arguments provided!");
             System.exit(1);
         }
         switch (args[1].toLowerCase()) {
@@ -38,7 +38,7 @@ class Arguments {
 
     public void tapcode(String[] args) {
         if (args.length != 3) {
-            System.err.println("wrong args");
+            System.err.println("Wrong number of arguments provided!");
             System.exit(1);
         }
         switch (args[1].toLowerCase()) {
@@ -55,7 +55,7 @@ class Arguments {
 
     public void casecmd(String[] args) {
         if (args.length != 3) {
-            System.err.println("wrong args");
+            System.err.println("Wrong number of arguments provided!");
             System.exit(1);
         }
         switch (args[1].toLowerCase()) {
@@ -84,7 +84,7 @@ class Arguments {
 
     public void usercreate(String[] args) throws Exception {
         if (args.length != 2) {
-            System.out.println("wrong args");
+            System.out.println("Wrong number of arguments provided!");
             System.exit(1);
         }
         k1.saveFile(args[1]);
@@ -92,7 +92,7 @@ class Arguments {
 
     public void userdelete(String[] args) throws Exception {
         if (args.length != 2) {
-            System.out.println("wrong args");
+            System.out.println("Wrong number of arguments provided!");
             System.exit(1);
         }
         k1.deleteFile(args[1]);
@@ -122,7 +122,7 @@ class Arguments {
                     System.out.println("CorrectWay: <public|privat> <name> [file]");
             }
         } else {
-            System.out.println("wrong args");
+            System.out.println("Wrong number of arguments provided!");
             System.exit(1);
         }
 
@@ -130,13 +130,18 @@ class Arguments {
 
     public void importkey(String[] args) throws Exception {
         if (args.length != 3) {
-            System.out.println("wrong args");
+            System.out.println("Wrong number of arguments provided!");
             System.exit(1);
         }
         k1.importKey(args[1], args[2]);
     }
 
     public void writemessage(String[] args) throws Exception {
+        if (args.length < 3) {
+            System.err.println("Wrong number of arguments provided!");
+            System.exit(1);
+        }
+
         if (args.length == 3) {
             k1.writeMessage(args[1], args[2], "");
         } else {
@@ -146,7 +151,7 @@ class Arguments {
 
     public void readmessage(String[] args) throws Exception {
         if (args.length != 2) {
-            System.out.println("wrong args");
+            System.out.println("Wrong number of arguments provided!");
             System.exit(1);
         }
         k1.readMessage(args[1]);
