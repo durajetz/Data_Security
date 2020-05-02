@@ -197,6 +197,19 @@ class Key {
             System.err.println("Error: " + e);
         }
     }
+    
+    public SecretKey generateDesKey() throws NoSuchAlgorithmException {
+        SecretKey secKey = null;
+        try {
+            KeyGenerator generator = KeyGenerator.getInstance("DES");
+            generator.init(56);
+            secKey = generator.generateKey();
+        } catch (Exception e) {
+            System.err.println("Error: " + e);
+            //e.printStackTrace();
+        }
+        return secKey;
+    }
 
     public PublicKey returnPublicKey(String argumenti) throws Exception {
         SAXBuilder builder = new SAXBuilder();
