@@ -295,6 +295,31 @@ class Key {
         return new String(decryptedBytes);
     }
     
+     public void writeMessage(String argumenti, String message, String opsfile) throws Exception {
+        try {
+            SecretKey secKey = generateDesKey();
+            SecureRandom sr = new SecureRandom();
+            byte[] ivbytes = new byte[8];
+            sr.nextBytes(ivbytes);
+            IvParameterSpec iv = new IvParameterSpec(ivbytes);
+
+            String part4 = encryptDes(secKey, message, iv);
+            String argumenti1 = Base64.getEncoder().encodeToString(argumenti.getBytes());
+            String rsaencrypt = Base64.getEncoder().encodeToString(encryptRsa(argumenti, secKey));
+            String ivencrypt = Base64.getEncoder().encodeToString(ivbytes);
+            String encrypt = (argumenti1 + "." + ivencrypt + "." + rsaencrypt + "." + part4);
+
+            if (opsfile.isEmpty()) {
+                System.out.println(encrypt);
+            } else {
+                writeFile(encrypt, pa1 + opsfile);
+                System.out.println("Mesazhi i enkriptuar u ruajt ne fajllin 'Desktop/" + opsfile + "'.");
+            }
+        } catch (Exception e) {
+            System.err.println("Gabim: Celesi publik '" + argumenti + "' nuk ekziston.");
+        }
+    }
+    
     public PublicKey returnPublicKey(String argumenti) throws Exception {
         DocumentBuilderFactory factory1 = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory1.newDocumentBuilder();
