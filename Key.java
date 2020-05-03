@@ -255,20 +255,25 @@ class Key {
     }
 
     public PublicKey returnPublicKey(String argumenti) throws Exception {
-        SAXBuilder builder = new SAXBuilder();
+        DocumentBuilderFactory factory1 = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory1.newDocumentBuilder();
+
         File xmlProductFile = new File(pa + argumenti + ".pub.xml");
-        Document document = builder.build(xmlProductFile);
-        Element root = document.getRootElement();
 
-        Element modulusElem = root.getChild("Modulus");
-        Element exponentElem = root.getChild("Exponent");
+        Document doc = builder.parse(xmlProductFile);
+        doc.getDocumentElement().normalize();
 
-        byte[] modBytes = Base64.getDecoder().decode(modulusElem.getText().trim());
-        byte[] expBytes = Base64.getDecoder().decode(exponentElem.getText().trim());
+        NodeList First = doc.getElementsByTagName("Modulus");
+        NodeList Second = doc.getElementsByTagName("Exponent");
+
+        String moduli = First.item(0).getTextContent();
+        String exponenti = Second.item(0).getTextContent();
+
+        byte[] modBytes = Base64.getDecoder().decode(moduli.getBytes());
+        byte[] expBytes = Base64.getDecoder().decode(exponenti.getBytes());
 
         BigInteger modules = new BigInteger(1, modBytes);
         BigInteger exponent = new BigInteger(1, expBytes);
-
 
         KeyFactory factory = KeyFactory.getInstance("RSA");
         RSAPublicKeySpec pubSpec = new RSAPublicKeySpec(modules, exponent);
@@ -278,16 +283,21 @@ class Key {
     }
 
     public PrivateKey returnPrivateKey(String argumenti) throws Exception {
-        SAXBuilder builder = new SAXBuilder();
+        DocumentBuilderFactory factory1 = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory1.newDocumentBuilder();
         File xmlPrivateFile = new File(pa + argumenti + ".xml");
-        Document document = builder.build(xmlPrivateFile);
-        Element root = document.getRootElement();
 
-        Element modulusElem = root.getChild("Modulus");
-        Element dElem = root.getChild("D");
+        Document doc = builder.parse(xmlPrivateFile);
+        doc.getDocumentElement().normalize();
 
-        byte[] modBytes = Base64.getDecoder().decode(modulusElem.getText().trim());
-        byte[] dBytes = Base64.getDecoder().decode(dElem.getText().trim());
+        NodeList First = doc.getElementsByTagName("Modulus");
+        NodeList Second = doc.getElementsByTagName("D");
+
+        String moduli = First.item(0).getTextContent();
+        String dz = Second.item(0).getTextContent();
+
+        byte[] modBytes = Base64.getDecoder().decode(moduli.getBytes());
+        byte[] dBytes = Base64.getDecoder().decode(dz.getBytes());
 
         BigInteger modules = new BigInteger(1, modBytes);
         BigInteger d = new BigInteger(1, dBytes);
