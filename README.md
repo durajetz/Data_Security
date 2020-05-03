@@ -28,13 +28,13 @@ Për këtë projekt u përdorën:
 
 # Instruksionet
 1. Vendosja e tri komandave(***count,case,tap-code**)* dhe programit ***ds*** në një directory të vetëm,pra:
-![Directory në këtë rast: ProjektiSiguri/](https://images2.imagebam.com/e8/ad/06/42c0ff1342642683.PNG)
+<img src="https://images2.imagebam.com/e8/ad/06/42c0ff1342642683.PNG" alt="" width="400px">
 2. Kompajllimi me anë të
     **Java programming language compiler**
     (*javac* pronounced "**java**-see")
  në **command line**(*git bash* në këtë rast):
 
-![javac](https://images2.imagebam.com/d2/68/da/e122271337326893.PNG)</br>
+​       <img src="https://images2.imagebam.com/d2/68/da/e122271337326893.PNG" alt="" width="300p     x"> </br>
 ```Ju mund të përdorni një "wildcard" që të kompajlloni të gjitha fajllat brenda një folderi, si psh: javac *.java```
 
 >type ***java*** before **'ds'** to run your program on cmd.
@@ -118,7 +118,8 @@ komanda|lines,words, letters, symbols,vowels, consonants,sentences | **Përshën
 | komanda     | publik(.pub) dhe privat | .xml    |
 
  <p align="center"><b><em>Sintaksa :</em></b></br>
-<p align="center"><img src="https://www.latex4technics.com/l4ttemp/924c3q.png?1588505891424" alt="sintaksa" style="width: 250px;"/></p>
+<p align="center"><img src="https://images2.imagebam.com/95/db/4b/8578fb1342663372.png" alt="sintaksa" style="width: 250px;"/></p>
+
 
 **Shembull:**
 
@@ -133,7 +134,8 @@ komanda|lines,words, letters, symbols,vowels, consonants,sentences | **Përshën
 | komanda     | publik(.pub) dhe privat | .xml    |
 
  <p align="center"><b><em>Sintaksa :</em></b></br>
-<p align="center"><img src="https://www.latex4technics.com/l4ttemp/6ac5hq.png?1588507837873" alt="sintaksa" style="width: 250px;"/></p>
+<p align="center"><img src="https://images2.imagebam.com/be/b4/ff/2891801342663376.png" alt="sintaksa" style="width: 250px;"/></p>
+
 
 **Shembull:**
 
@@ -152,7 +154,8 @@ komanda|lines,words, letters, symbols,vowels, consonants,sentences | **Përshën
 | komanda    | publik(.pub) ose privat | cmd ose file(opsionale) |
 
  <p align="center"><b><em>Sintaksa :</em></b></br>
-<p align="center"><img src="https://www.latex4technics.com/l4ttemp/6ac5hq.png?1588511289504" alt="sintaksa" style="width: 250px;"/></p>
+<p align="center"><img src="https://images2.imagebam.com/d9/42/1c/6cf4b71342663378.png" alt="sintaksa" style="width: 250px;"/></p>
+
 
 **Shembull:**
 
@@ -169,7 +172,8 @@ komanda|lines,words, letters, symbols,vowels, consonants,sentences | **Përshën
 | komanda    | path//filename.ext | dir. keys/name |
 
  <p align="center"><b><em>Sintaksa :</em></b></br>
-<p align="center"><img src="https://www.latex4technics.com/l4ttemp/6ac5hq.png?1588513850885" alt="sintaksa" style="width: 250px;"/></p>
+<p align="center"><img src="https://images2.imagebam.com/42/0b/f1/cb76b01342663382.png" alt="sintaksa" style="width: 250px;"/></p>
+
 
 **Shembull:**
 
@@ -190,7 +194,7 @@ komanda|lines,words, letters, symbols,vowels, consonants,sentences | **Përshën
 | komanda       | me çelësin publik | ne cmd ose file(opsionale) |
 
  <p align="center"><b><em>Sintaksa :</em></b></br>
-<p align="center"><img src="https://www.latex4technics.com/l4ttemp/6ac5hq.png?1588514615465" alt="sintaksa" style="width: 250px;"/></p>
+<p align="center"><img src="https://images2.imagebam.com/c6/4c/d7/1151ba1342662935.png" alt="sintaksa" style="width: 250px;"/></p>
 
 ```$ ds write-message test "This is a plaintext"```</br><img src="https://images2.imagebam.com/e6/0b/b4/36bb511342659637.PNG" alt="" width="600px">
 
