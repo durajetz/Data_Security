@@ -1,3 +1,4 @@
+
 import java.io.PrintWriter;
 import java.math.BigInteger;
 import java.security.*;
@@ -30,9 +31,14 @@ import org.w3c.dom.NodeList;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 class Key {
-    static final String pa = System.getProperty("user.home") + "\\" + "Desktop" + "\\" + "keys" + "\\";
+    static final String pa = System.getProperty("user.home") + "\\" + "Desktop" + "\\" + "keys" + "\\"; // directorium of keys
+    static final String pa1 = System.getProperty("user.home") + "\\"; //  + "Desktop" + "\\"; was first written to save only on Desktop // this path is mostly used for export and import of keys
+    static final String s = pa.replaceAll("/", "\\/");
     static final String NL = System.getProperty("line.separator");
 
     public String getPrivateKeyAsXml(PrivateKey privateKey) throws Exception {
@@ -118,7 +124,6 @@ class Key {
         String privateKeyAsXml = getPrivateKeyAsXml(privateKey);
         String publicKeyAsXml = getPublicKeyAsXml(publicKey);
 
-        String s = pa.replaceAll("/", "\\/");
         Path path = Paths.get(pa + argumenti + ".xml");
         File file = new File(pa);
         boolean bool = file.mkdir();
@@ -134,7 +139,6 @@ class Key {
         File folder = new File(pa);
         Path path = Paths.get(pa + argumenti + ".xml");
         Path path1 = Paths.get(pa + argumenti + ".pub.xml");
-
         if (Files.exists(path) || Files.exists(path1)) {
             for (File file : folder.listFiles()) {
                 if (file.getName().equals(argumenti + ".pub.xml")) {
@@ -161,7 +165,7 @@ class Key {
         try {
             String file = readFile(pa + argumenti + ext);
             writeFile(file, pa1 + argumenti1);
-            System.out.println("Celesi " + celesi + " u ruajt ne fajllin '" + argumenti1 + "'.");
+            System.out.println("Celesi " + celesi + " u ruajt ne fajllin '" + pa1 + argumenti1 + "'.");
         } catch (Exception e) {
             System.err.println("Gabim: Celesi " + celesi + " '" + argumenti + "'" + " nuk ekziston.");
         }
@@ -170,16 +174,17 @@ class Key {
     public void importKey(String argumenti, String argumenti1) throws Exception {
         File f = new File(pa + argumenti1 + ".xml");
         File f1 = new File(pa + argumenti1 + ".pub.xml");
-
+        Pattern fileExtnPtrn = Pattern.compile("([^\\s]+(\\.(?i)(txt|doc|xml|pdf))$)");
+        Matcher mtch = fileExtnPtrn.matcher(argumenti);
         if (f.exists() || f1.exists()) {
             System.out.println("Gabim: Celesi '" + argumenti1 + "' ekziston paraprakisht.");
-            return;
+            System.exit(1);
         } else if (argumenti.startsWith("http://") || argumenti.startsWith("https://")) {
             getRequest(argumenti, argumenti1);
-            return;
-        } else if (!argumenti.endsWith(".xml")) {
+            System.exit(1);
+        } else if (!mtch.matches()) {
             System.out.println("Gabim: Fajlli i dhene nuk eshte celes valid.");
-            return;
+            System.exit(1);
         }
 
         try {
@@ -197,12 +202,12 @@ class Key {
         String extension = isPrivate ? ".xml" : ".pub.xml";
         if (!isPrivate) {
             writeFile(content, pa + argumenti1 + extension);
-            System.out.println("Celesi publik u ruajt ne fajllin 'keys/" + argumenti1 + ".pub.xml'.");
+            System.out.println("Celesi publik u ruajt ne fajllin 'Desktop/keys/" + argumenti1 + ".pub.xml'.");
         } else {
             writeFile(content, pa + argumenti1 + extension);
             writeFile(getPublicKeyAsXml(publicKey), s + argumenti1 + ".pub.xml");
-            System.out.println("Celesi privat u ruajt ne fajllin 'keys/" + argumenti1 + ".pub.xml'.\n" +
-                    "Celesi publik u ruajt ne fajllin 'keys/" + argumenti1 + ".pub.xml'.");
+            System.out.println("Celesi privat u ruajt ne fajllin 'Desktop/keys/" + argumenti1 + ".xml'.\n" +
+                    "Celesi publik u ruajt ne fajllin 'Desktop/keys/" + argumenti1 + ".pub.xml'.");
 
             DocumentBuilderFactory factory1 = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory1.newDocumentBuilder();
@@ -225,6 +230,7 @@ class Key {
 
             StreamResult streamResult = new StreamResult(xmlPub);
             transformer.transform(domSource, streamResult);
+
         }
     }
 
@@ -240,7 +246,7 @@ class Key {
             System.err.println("Error: " + e);
         }
     }
-    
+
     public SecretKey generateDesKey() throws NoSuchAlgorithmException {
         SecretKey secKey = null;
         try {
@@ -253,14 +259,14 @@ class Key {
         }
         return secKey;
     }
-    
+
     public byte[] encryptRsa(String argumenti, SecretKey secKey) throws Exception {
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.ENCRYPT_MODE, returnPublicKey(argumenti));
         byte[] encryptedKey = cipher.doFinal(secKey.getEncoded());
         return encryptedKey;
     }
-    
+
     public String encryptDes(SecretKey secKey, String plainText, IvParameterSpec iv) throws Exception {
         byte[] encrypted = null;
         try {
@@ -273,7 +279,7 @@ class Key {
         }
         return Base64.getEncoder().encodeToString(encrypted);
     }
-    
+
     public SecretKey decryptRsa(String argumenti, String key) throws Exception {
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.DECRYPT_MODE, returnPrivateKey(argumenti));
@@ -281,7 +287,7 @@ class Key {
         SecretKey originalKey = new SecretKeySpec(decryptedKey, 0, decryptedKey.length, "DES");
         return originalKey;
     }
-    
+
     public String decryptDes(SecretKey secKey, String encrypted, IvParameterSpec iv) throws Exception {
         byte[] decryptedBytes = null;
         try {
@@ -294,8 +300,8 @@ class Key {
         }
         return new String(decryptedBytes);
     }
-    
-     public void writeMessage(String argumenti, String message, String opsfile) throws Exception {
+
+    public void writeMessage(String argumenti, String message, String opsfile) throws Exception {
         try {
             SecretKey secKey = generateDesKey();
             SecureRandom sr = new SecureRandom();
@@ -313,7 +319,7 @@ class Key {
                 System.out.println(encrypt);
             } else {
                 writeFile(encrypt, pa1 + opsfile);
-                System.out.println("Mesazhi i enkriptuar u ruajt ne fajllin 'Desktop/" + opsfile + "'.");
+                System.out.println("Mesazhi i enkriptuar u ruajt ne fajllin '" + pa1 + opsfile + "'.");
             }
         } catch (Exception e) {
             System.err.println("Gabim: Celesi publik '" + argumenti + "' nuk ekziston.");
@@ -352,7 +358,7 @@ class Key {
             System.err.println("Gabim: Celesi privat 'keys/" + antari1 + ".xml' nuk ekziston.");
         }
     }
-    
+
     public PublicKey returnPublicKey(String argumenti) throws Exception {
         DocumentBuilderFactory factory1 = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory1.newDocumentBuilder();
