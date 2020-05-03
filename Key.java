@@ -6,9 +6,30 @@ import java.security.spec.RSAPublicKeySpec;
 import java.util.Arrays;
 import java.util.Base64;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
+import java.util.stream.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import javax.crypto.*;
+import javax.crypto.spec.*;
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import java.security.spec.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 class Key {
     static final String pa = System.getProperty("user.home") + "\\" + "Desktop" + "\\" + "keys" + "\\";
@@ -182,6 +203,28 @@ class Key {
             writeFile(getPublicKeyAsXml(publicKey), s + argumenti1 + ".pub.xml");
             System.out.println("Celesi privat u ruajt ne fajllin 'keys/" + argumenti1 + ".pub.xml'.\n" +
                     "Celesi publik u ruajt ne fajllin 'keys/" + argumenti1 + ".pub.xml'.");
+
+            DocumentBuilderFactory factory1 = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory1.newDocumentBuilder();
+            File xmlProductFile = new File(pa + argumenti1 + ".xml");
+            Document doc = builder.parse(xmlProductFile);
+            doc.getDocumentElement().normalize();
+            NodeList First = doc.getElementsByTagName("Modulus");
+            String moduli = First.item(0).getTextContent();
+
+            File xmlPub = new File(pa + argumenti1 + ".pub.xml");
+            Document doc1 = builder.parse(xmlPub);
+            doc1.getDocumentElement().normalize();
+            Node First1 = doc1.getElementsByTagName("Modulus").item(0);
+            First1.setTextContent(moduli);
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource domSource = new DOMSource(doc1);
+
+            StreamResult streamResult = new StreamResult(xmlPub);
+            transformer.transform(domSource, streamResult);
         }
     }
 
