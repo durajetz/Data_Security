@@ -253,7 +253,22 @@ class Key {
         }
         return secKey;
     }
+    
+    public byte[] encryptRsa(String argumenti, SecretKey secKey) throws Exception {
+        Cipher cipher = Cipher.getInstance("RSA");
+        cipher.init(Cipher.ENCRYPT_MODE, returnPublicKey(argumenti));
+        byte[] encryptedKey = cipher.doFinal(secKey.getEncoded());
+        return encryptedKey;
+    }
 
+    public SecretKey decryptRsa(String argumenti, String key) throws Exception {
+        Cipher cipher = Cipher.getInstance("RSA");
+        cipher.init(Cipher.DECRYPT_MODE, returnPrivateKey(argumenti));
+        byte[] decryptedKey = cipher.doFinal(Base64.getDecoder().decode(key));
+        SecretKey originalKey = new SecretKeySpec(decryptedKey, 0, decryptedKey.length, "DES");
+        return originalKey;
+    }
+    
     public PublicKey returnPublicKey(String argumenti) throws Exception {
         DocumentBuilderFactory factory1 = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory1.newDocumentBuilder();
