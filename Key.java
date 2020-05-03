@@ -253,7 +253,48 @@ class Key {
         }
         return secKey;
     }
-
+    
+    public byte[] encryptRsa(String argumenti, SecretKey secKey) throws Exception {
+        Cipher cipher = Cipher.getInstance("RSA");
+        cipher.init(Cipher.ENCRYPT_MODE, returnPublicKey(argumenti));
+        byte[] encryptedKey = cipher.doFinal(secKey.getEncoded());
+        return encryptedKey;
+    }
+    
+    public String encryptDes(SecretKey secKey, String plainText, IvParameterSpec iv) throws Exception {
+        byte[] encrypted = null;
+        try {
+            Cipher desCipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
+            desCipher.init(Cipher.ENCRYPT_MODE, secKey, iv);
+            encrypted = desCipher.doFinal(plainText.getBytes());
+        } catch (Exception e) {
+            System.err.println("Error: " + e);
+            //e.printStackTrace();
+        }
+        return Base64.getEncoder().encodeToString(encrypted);
+    }
+    
+    public SecretKey decryptRsa(String argumenti, String key) throws Exception {
+        Cipher cipher = Cipher.getInstance("RSA");
+        cipher.init(Cipher.DECRYPT_MODE, returnPrivateKey(argumenti));
+        byte[] decryptedKey = cipher.doFinal(Base64.getDecoder().decode(key));
+        SecretKey originalKey = new SecretKeySpec(decryptedKey, 0, decryptedKey.length, "DES");
+        return originalKey;
+    }
+    
+    public String decryptDes(SecretKey secKey, String encrypted, IvParameterSpec iv) throws Exception {
+        byte[] decryptedBytes = null;
+        try {
+            Cipher desCipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
+            desCipher.init(Cipher.DECRYPT_MODE, secKey, iv);
+            decryptedBytes = desCipher.doFinal(Base64.getDecoder().decode(encrypted));
+        } catch (Exception e) {
+            System.err.println("Error: " + e);
+            //e.printStackTrace();
+        }
+        return new String(decryptedBytes);
+    }
+    
     public PublicKey returnPublicKey(String argumenti) throws Exception {
         DocumentBuilderFactory factory1 = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory1.newDocumentBuilder();
