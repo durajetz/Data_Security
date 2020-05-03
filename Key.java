@@ -319,6 +319,39 @@ class Key {
             System.err.println("Gabim: Celesi publik '" + argumenti + "' nuk ekziston.");
         }
     }
+
+    public void readMessage(String input) throws Exception {
+        String antari1Base64 = input.split("\\.")[0];
+        String antari1 = new String(Base64.getDecoder().decode(antari1Base64));
+        try {
+            File f = new File(pa1 + input);
+
+            int count = input.length() - input.replaceAll("\\.", "").length();
+            String message = "";
+
+            if (count != 3 && f.isFile()) {
+                message = readFile(pa1 + input);
+            } else if (count == 3 && !f.isFile()) {
+                message = input;
+            } else {
+                System.out.println("Error: Fajlli ne dir. '" + input + "' nuk ekziston.");
+                System.exit(1);
+            }
+            antari1Base64 = message.split("\\.")[0];
+            antari1 = new String(Base64.getDecoder().decode(antari1Base64));
+            String antari2Base64 = message.split("\\.")[1];
+            byte[] antari2 = Base64.getDecoder().decode(antari2Base64);
+            IvParameterSpec iv = new IvParameterSpec(antari2);
+            String antari3Base64 = message.split("\\.")[2];
+            SecretKey secKey = decryptRsa(antari1, antari3Base64);
+            String antari4Base64 = message.split("\\.")[3];
+
+            String decrypt = decryptDes(secKey, antari4Base64, iv);
+            System.out.println("Marresi: " + antari1 + "\nMesazhi: " + decrypt);
+        } catch (Exception e) {
+            System.err.println("Gabim: Celesi privat 'keys/" + antari1 + ".xml' nuk ekziston.");
+        }
+    }
     
     public PublicKey returnPublicKey(String argumenti) throws Exception {
         DocumentBuilderFactory factory1 = DocumentBuilderFactory.newInstance();
