@@ -27,7 +27,7 @@ Për këtë projekt u përdorën:
 
 
 # Instruksionet
-1. Vendosja e tri komandave(***count,case,tap-code**)* dhe programit ***ds*** në një directory të vetëm,pra:
+1. Vendosja e gjitha komandave dhe programit ***ds*** në një directory të vetëm,pra:
 <img src="https://images2.imagebam.com/e8/ad/06/42c0ff1342642683.PNG" alt="" width="400px">
 2. Kompajllimi me anë të
     **Java programming language compiler**
