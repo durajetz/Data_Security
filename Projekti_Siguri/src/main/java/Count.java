@@ -1,9 +1,6 @@
-
-
-
 public class Count {
         // COUNT LINES
-        public static int lines(String s) {
+        public int lines(String s) {
             if (s == null || s.isEmpty()) {
                 return 0;
             }
@@ -12,7 +9,7 @@ public class Count {
         }
 
         // COUNT WORDS
-        public static int words(String s) {
+        public int words(String s) {
             if (s == null || s.isEmpty()) {
                 return 0;
             }
@@ -22,7 +19,7 @@ public class Count {
         }
 
         // COUNT LETTERS
-        public static int letters(String s) {
+        public int letters(String s) {
             int count = 0;
             for (char c : s.toCharArray()) {
                 if (Character.isLetter(c))
@@ -32,7 +29,7 @@ public class Count {
         }
 
         // COUNT SYMBOLS
-        public static int symbols(String s){
+        public int symbols(String s){
             int count2 = 0;
             for (int i = 0; i < s.length(); i++) {
                 char ch = s.charAt(i);
@@ -44,7 +41,7 @@ public class Count {
         }
 
         // COUNT VOWELS
-        public static int vowels(String s) {
+        public int vowels(String s) {
 
             int count1 = 0;
             s = s.toLowerCase();
@@ -56,7 +53,7 @@ public class Count {
         }
 
         // COUNT CONSONANTS
-        public static int consonants(String s){
+        public int consonants(String s){
             int count3 = 0;
             s = s.toLowerCase();
             for (char ch1 : s.toCharArray()){
@@ -70,7 +67,7 @@ public class Count {
         }
 
         // COUNT SENTENCES
-        public static int sentences(String s){
+        public int sentences(String s){
             String[] sentence = s.split("[!?.:]+");
             return sentence.length;
         }
