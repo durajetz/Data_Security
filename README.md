@@ -230,7 +230,7 @@ komanda|lines,words, letters, symbols,vowels, consonants,sentences | **Përshën
 * [Java JWT: JSON Web Token for Java](https://github.com/jwtk/jjwt) 
 * [Maven Package manager](https://www.tutorialspoint.com/maven/maven_external_dependencies.htm)
 
-# Autorët
+# Authors
 
 * [Aurel Demiraj](mailto:aureldem1@outlook.com)
 * [Besar Pallush](mailto:besarp5@gmail.com)
