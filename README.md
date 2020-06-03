@@ -55,7 +55,6 @@ komanda|lines,words, letters, symbols,vowels, consonants,sentences | **Përshën
 
 <p align="center"><b><em>Sintaksa :</em></b></br>
 <p align="center"><img src="https://images2.imagebam.com/76/93/f9/c0f9341337430291.png" alt="sintaksa" style="width: 250px;"/></p>
-
 **Shembull:**
 
 ```$ ./ds.sh count lines "Pershendetje nga FIEK!"```</br>
@@ -87,9 +86,10 @@ komanda|lines,words, letters, symbols,vowels, consonants,sentences | **Përshën
 
 <p align="center"><b><em>Sintaksa :</em></b></br>
 <p align="center"><img src="https://images2.imagebam.com/d3/06/91/1d68e51337430295.png" alt="sintaksa" style="width: 250px;"/></p>
+
 **Shembull:**
 
-```$ ./ds.sh case upper "Pershendetje nga FIEK!"```</br><img src="https://images2.imagebam.com/27/2c/98/7800d01337426620.png" alt="" width="400px">
+$ ./ds.sh case upper "Pershendetje nga FIEK!"```</br><img src="https://images2.imagebam.com/27/2c/98/7800d01337426620.png" alt="" width="400px">
 
 ```$ ./ds.sh case lower "Pershendetje nga FIEK!"```</br><img src="https://images2.imagebam.com/f7/f2/1f/0960e31337426631.PNG" alt="" width="400px">
 
