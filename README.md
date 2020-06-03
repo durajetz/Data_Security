@@ -9,14 +9,17 @@ Ky projekt u zhvillua në gjuhën programuese:
  - ***Count***  - Numëron paraqitjen e njësisë <unit> në tekst<text>. 
  - ***Case*** - E konverton tekstin <text> në madhësinë e dhënë<case>.
  - ***Tap-code*** - Enkodon tekstin<text> në Tap Kodin dhe Dekodon vargun nga Tap Kodi në alfabet latin.
- - ***Create-user*** - Krijon një çift të publik/privat të RSA me emrat .xml dhe .pub.xml brenda direktoriumit të çelësave keys.
- - ***Delete-user*** - I largon të gjithë çelësat ekzistues të shfrytëzuesit.
+ - ***Create-user*** - Krijon një çift të publik/privat të RSA me emrat .xml dhe .pub.xml brenda direktoriumit të çelësave keys si dhe një user që ruhet automatikisht në fajllin: Desktop/databasa.txt.
+ - ***Delete-user*** - I largon të gjithë çelësat ekzistues të shfrytëzuesit dhe largon userin nga databasa.
+ - ***Login*** - Mundson kyçjen e userit me anë të passwordit që është ruajtur si salt në databas dhe krijimin e një JWT tokeni ku si Subject të body-t pranon userin.
+ - ***Status*** - Tregon gjendjen e validimit të JWT tokenit.
  - ***Export-key*** - Eksporton çelësin publik ose privat të shfrytëzuesit nga direktoriumi i çelësave.
  - ***Import-key*** - Importon çelësin publik ose privat të shfrytëzuesit nga shtegu i dhënë dhe e vendos në direktoriumin e çelësave.
  - ***Write-message*** - E shkruan një mesazh të enkriptuar të dedikuar për një shfrytëzues.
  - ***Read-message*** - E dekripton dhe e shfaq në console mesazhin e enkriptuar.
 
 # Parakushtet
+ * Install the JDK Software and Set JAVA_HOME on a Windows System
  * Choosing your Java IDE(Për shkruarjen e programeve me anë të gjuhës programuese Java)
  * Choosing your Command line (Për thirrjen e argumenteve - args passing)
 ```
@@ -27,20 +30,21 @@ Për këtë projekt u përdorën:
 
 
 # Instruksionet
-1. Vendosja e gjitha komandave dhe programit ***ds*** në një directory të vetëm,pra:
-<img src="https://images2.imagebam.com/e8/ad/06/42c0ff1342642683.PNG" alt="" width="400px">
-2. Kompajllimi me anë të
-    **Java programming language compiler**
-    (*javac* pronounced "**java**-see")
- në **command line**(*git bash* në këtë rast):
+```bash
+$ clone https://github.com/aureldemiraj/ds-gr27-2020.git
+$ cd ds-gr27-2020/Projekti_Siguri
+$ ./ds.sh <komanda> <argumentet>
+```
 
-​       <img src="https://images2.imagebam.com/d2/68/da/e122271337326893.PNG" alt="" width="300p     x"> </br>
-```Ju mund të përdorni një "wildcard" që të kompajlloni të gjitha fajllat brenda një folderi, si psh: javac *.java```
+```bash
+test@user MINGW64 ~/.../ds-gr27-2020/Projekti_Siguri
+$ ./ds.sh create-user test
+```
 
->type ***java*** before **'ds'** to run your program on cmd.
+> Skripta ds.sh përmban kodin për ekzekutimin e ds.jar (jar file qe e ka një main class me anë të së cilës mundet me u exec programi).
 
 # Ekzekutimi i komandave
-Ekzekutimi i komandave *count,case,tap-code,create-user,delete-user,export-key,import-key,write-message,read-message* përmes thirrjes së argumenteve të programit main ***ds*** nga command line.
+
 ## Komanda count
 
 count | unit | text
@@ -54,7 +58,6 @@ komanda|lines,words, letters, symbols,vowels, consonants,sentences | **Përshën
 
 ```$ ds count lines "Pershendetje nga FIEK!"```</br>
 <img src="https://images2.imagebam.com/47/d0/50/ae6b4b1337331187.PNG" alt="" width="400px">
-
 
 ```$ ds count words "Pershendetje nga FIEK!"```</br>
 <img src="https://images2.imagebam.com/77/13/00/33824b1337331397.PNG" alt="" width="400px">
@@ -217,32 +220,15 @@ komanda|lines,words, letters, symbols,vowels, consonants,sentences | **Përshën
 
 ```$ ds read-message blerim ```</br><img src="https://images2.imagebam.com/f7/1d/70/af5ba31342659634.PNG" alt="" width="600px">
 
-## Kompajllimi përmes shell script
- 1. Fajllin ***ds.sh***  e vendosim në directoryn e njejtë me fajllat e tjer (ProjektiSiguri/) 
- 2. Pas gjetjes së directoryt në cmd
- Kompajllojm ds scripten:
-```bash
-$ ./ds.sh compile
-
-$ ./ds.sh count lines "Pershendetje nga FIEK!"
-Lines: 1
-
-$ ./ds.sh tap-code encode "this is a code"
-.. ....  /  . ...  . .  ... ...  /  .. .  ... .  ..... ....
-
-$ ./ds.sh write-message test "YOU CAN NEVER DECRYPT THIS"
-dGVzdA==.aVcLEP7RpVc=.GZzfhpM/jET8Nj5tjG2wkRTJbCOuAYaQJFQHvWW3Xs+SoOtBdoWQQayWBmy1v5ztd9BtI4VP5hwtR08picDRykO909NGN3AF4BZ70z56mAqk9jVfPQFHClEX+hN86CBMC6/EqkIsMN1lfjpmDrb1YcYiWqYNWjsNHEgwlyZARpA=.1miDsG4COh04XY4wXCzE+qxjzYjCCEkyFXtyjHR1TKs=
-```
-
- ## Falënderim për
-
-Disa nga meritorët e suksesit dhe përfundimit të kësaj faze të parë dhe të dytë të Projektit :
+ ## References
 
 * [Stack Overflow](https://stackoverflow.com/)
   * [Metoda capitalize](https://stackoverflow.com/questions/1892765/how-to-capitalize-the-first-character-of-each-word-in-a-string/1892778?fbclid=IwAR0yYzxmvyVgsi3uL8Of39I4NZvKEM-17GBLM4jTVW2SlqSdi71epYk22AI)
   * [XML format ](https://stackoverflow.com/questions/12512455/rsa-key-xml-format-compatible-for-net)
+  * [Password Hashing](https://stackoverflow.com/questions/2860943/how-can-i-hash-a-password-in-java)
 * [Java DOM Parser](https://www.tutorialspoint.com/java_xml/java_dom_parser.htm)
-* Ass. *Edon Gashi* (i cili ka qenë në dispozicion çdo kohë për t'iu përgjigjur paqartësive tona)
+* [Java JWT: JSON Web Token for Java](https://github.com/jwtk/jjwt) 
+* [Maven Package manager](https://www.tutorialspoint.com/maven/maven_external_dependencies.htm)
 
 # Autorët
 
@@ -251,7 +237,7 @@ Disa nga meritorët e suksesit dhe përfundimit të kësaj faze të parë dhe t�
 * [Durajet Mustafa](mailto:eti1375@gmail.com)
 
 ___
-<small><i>Përshkrimi i projektit (<a href='https://www.dropbox.com/s/aryposlxmi1qctk/grupi-27.pdf?dl=0'> Faza1</a>,<a href='https://www.dropbox.com/s/8go31knlafn55t8/ds_projekti_2.pdf?dl=0'>Faza2</a>)</i>,</br>
+<small><i>Përshkrimi i projektit (<a href='https://www.dropbox.com/s/aryposlxmi1qctk/grupi-27.pdf?dl=0'>Faza1</a>,<a href='https://www.dropbox.com/s/8go31knlafn55t8/ds_projekti_2.pdf?dl=0'>Faza2</a>)</i>,</br>
 Regards Grupi27 (Sferat e Dragoit).</small>
 
 
