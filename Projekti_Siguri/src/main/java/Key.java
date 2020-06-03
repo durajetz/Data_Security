@@ -301,9 +301,10 @@ class Key {
         return new String(decryptedBytes);
     }
 
-    public void writeMessage(String argumenti, String message, String opsfile) throws Exception {
+    public static void writeMessage(String argumenti, String message, String opsfile, String jwt) throws Exception {
         try {
             SecretKey secKey = generateDesKey();
+
             SecureRandom sr = new SecureRandom();
             byte[] ivbytes = new byte[8];
             sr.nextBytes(ivbytes);
@@ -311,18 +312,50 @@ class Key {
 
             String part4 = encryptDes(secKey, message, iv);
             String argumenti1 = Base64.getEncoder().encodeToString(argumenti.getBytes());
-            String rsaencrypt = Base64.getEncoder().encodeToString(encryptRsa(argumenti, secKey));
             String ivencrypt = Base64.getEncoder().encodeToString(ivbytes);
-            String encrypt = (argumenti1 + "." + ivencrypt + "." + rsaencrypt + "." + part4);
+            String rsaencrypt = Base64.getEncoder().encodeToString(encryptRsa(argumenti, secKey));
 
-            if (opsfile.isEmpty()) {
-                System.out.println(encrypt);
+            String encrypt = null;
+
+            String senderitokenit = null;
+            String nenshkrimidesit = null;
+            String part5 = null;
+            String pjesanenshkrimit = null;
+
+            File celesipublik = new File(pa + argumenti + ".pub.xml");
+
+            if (!celesipublik.exists()) {
+                System.out.println("Gabim: Celesi publik '" + argumenti + "'");
+                System.exit(1);
+            }
+
+            if (jwt == null) {
+                encrypt = (argumenti1 + "." + ivencrypt + "." + rsaencrypt + "." + part4);
             } else {
-                writeFile(encrypt, pa1 + opsfile);
+                senderitokenit = JWT.kthesubject(jwt);
+                nenshkrimidesit = Base64.getEncoder().encodeToString((sign(senderitokenit, part4)));
+                part5 = Base64.getEncoder().encodeToString(senderitokenit.getBytes());
+                pjesanenshkrimit = (argumenti1 + "." + ivencrypt + "." + rsaencrypt + "." + part4 + "." + part5 + "." + nenshkrimidesit);
+            }
+
+            if (opsfile == null) {
+                if (jwt == null) {
+                    System.out.println(encrypt);
+                    System.exit(1);
+                }
+                System.out.println("\n" + pjesanenshkrimit);
+            }else{
+                if (jwt == null) {
+                    writeFile(encrypt, pa1 + opsfile);
+                    System.out.println("Mesazhi i enkriptuar u ruajt ne fajllin '" + pa1 + opsfile + "'.");
+                    System.exit(1);
+                }
+                writeFile(pjesanenshkrimit, pa1 + opsfile);
                 System.out.println("Mesazhi i enkriptuar u ruajt ne fajllin '" + pa1 + opsfile + "'.");
             }
+
         } catch (Exception e) {
-            System.err.println("Gabim: Celesi publik '" + argumenti + "' nuk ekziston.");
+            System.err.println("Gabim: Komanda deshtoi tokeni nuk eshte valid.");
         }
     }
 
