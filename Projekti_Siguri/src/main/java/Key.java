@@ -1,4 +1,3 @@
-
 import java.io.PrintWriter;
 import java.math.BigInteger;
 import java.security.*;
@@ -33,7 +32,6 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 
 class Key {
     static final String pa = System.getProperty("user.home") + "\\" + "Desktop" + "\\" + "keys" + "\\"; // directorium of keys
@@ -95,7 +93,7 @@ class Key {
 
     public static KeyPair generateKey() throws NoSuchAlgorithmException {
         KeyPairGenerator kg = KeyPairGenerator.getInstance("RSA");
-        kg.initialize(1024);
+        kg.initialize(2048);
         KeyPair keyPair = kg.generateKeyPair();
         return keyPair;
     }
@@ -110,12 +108,12 @@ class Key {
         }
     }
 
-    public String readFile(String path) throws Exception {
+    public static String readFile(String path) throws Exception {
         String content = new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
         return content;
     }
 
-    public void saveFile(String argumenti) throws Exception {
+    public static void saveFile(String argumenti) throws Exception {
         KeyPair keyPair = generateKey();
 
         PrivateKey privateKey = keyPair.getPrivate();
@@ -128,6 +126,7 @@ class Key {
         File file = new File(pa);
         boolean bool = file.mkdir();
         if (!Files.exists(path) || bool) {
+            Loginsystem.ruajpw(argumenti);
             writeFile(privateKeyAsXml, s + argumenti + ".xml");
             writeFile(publicKeyAsXml, s + argumenti + ".pub.xml");
             System.out.println("Eshte krijuar celesi privat 'keys/" + argumenti + ".xml'\n" +
@@ -135,11 +134,13 @@ class Key {
         } else System.out.println("Gabim: Celesi '" + argumenti + "' ekziston paraprakisht.");
     }
 
-    public void deleteFile(String argumenti) {
+    public static void deleteFile(String argumenti) throws Exception {
         File folder = new File(pa);
         Path path = Paths.get(pa + argumenti + ".xml");
         Path path1 = Paths.get(pa + argumenti + ".pub.xml");
         if (Files.exists(path) || Files.exists(path1)) {
+            Loginsystem.deletepw(argumenti);
+            System.out.println("Eshte larguar useri '" + argumenti + "' nga baza e te dhenave.");
             for (File file : folder.listFiles()) {
                 if (file.getName().equals(argumenti + ".pub.xml")) {
                     file.delete();
@@ -152,7 +153,7 @@ class Key {
         } else System.out.println("Gabim: Celesi '" + argumenti + "' nuk ekziston.");
     }
 
-    public void exportFile(String argumenti, String ext, String celesi) throws Exception {
+    public static void exportFile(String argumenti, String ext, String celesi) throws Exception {
         File f = new File(pa + argumenti + ext);
         if (!f.exists()) {
             System.out.println("Gabim: Celesi " + celesi + " '" + argumenti + "'" + " nuk ekziston.");
@@ -161,7 +162,7 @@ class Key {
         System.out.println(readFile(pa + argumenti + ext));
     }
 
-    public void copyFile(String argumenti, String ext, String argumenti1, String celesi) throws Exception {
+    public static void copyFile(String argumenti, String ext, String argumenti1, String celesi) throws Exception {
         try {
             String file = readFile(pa + argumenti + ext);
             writeFile(file, pa1 + argumenti1);
@@ -171,7 +172,7 @@ class Key {
         }
     }
 
-    public void importKey(String argumenti, String argumenti1) throws Exception {
+    public static void importKey(String argumenti, String argumenti1) throws Exception {
         File f = new File(pa + argumenti1 + ".xml");
         File f1 = new File(pa + argumenti1 + ".pub.xml");
         Pattern fileExtnPtrn = Pattern.compile("([^\\s]+(\\.(?i)(txt|doc|xml|pdf))$)");
@@ -194,7 +195,7 @@ class Key {
         }
     }
 
-    public void findKey(String content, String argumenti, String argumenti1) throws Exception {
+    public static void findKey(String content, String argumenti, String argumenti1) throws Exception {
         KeyPair keyPair = generateKey();
         PublicKey publicKey = keyPair.getPublic();
         String searchword = "<P>";
@@ -234,7 +235,7 @@ class Key {
         }
     }
 
-    public void getRequest(String argumenti, String argumenti1) throws Exception {
+    public static void getRequest(String argumenti, String argumenti1) throws Exception {
         try {
             URL urlObj = new URL(argumenti);
             HttpURLConnection con = (HttpURLConnection) urlObj.openConnection();
@@ -247,7 +248,7 @@ class Key {
         }
     }
 
-    public SecretKey generateDesKey() throws NoSuchAlgorithmException {
+    public static SecretKey generateDesKey() throws NoSuchAlgorithmException {
         SecretKey secKey = null;
         try {
             KeyGenerator generator = KeyGenerator.getInstance("DES");
@@ -260,14 +261,14 @@ class Key {
         return secKey;
     }
 
-    public byte[] encryptRsa(String argumenti, SecretKey secKey) throws Exception {
+    public static byte[] encryptRsa(String argumenti, SecretKey secKey) throws Exception {
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.ENCRYPT_MODE, returnPublicKey(argumenti));
         byte[] encryptedKey = cipher.doFinal(secKey.getEncoded());
         return encryptedKey;
     }
 
-    public String encryptDes(SecretKey secKey, String plainText, IvParameterSpec iv) throws Exception {
+    public static String encryptDes(SecretKey secKey, String plainText, IvParameterSpec iv) throws Exception {
         byte[] encrypted = null;
         try {
             Cipher desCipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
@@ -280,7 +281,7 @@ class Key {
         return Base64.getEncoder().encodeToString(encrypted);
     }
 
-    public SecretKey decryptRsa(String argumenti, String key) throws Exception {
+    public static SecretKey decryptRsa(String argumenti, String key) throws Exception {
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.DECRYPT_MODE, returnPrivateKey(argumenti));
         byte[] decryptedKey = cipher.doFinal(Base64.getDecoder().decode(key));
@@ -288,7 +289,7 @@ class Key {
         return originalKey;
     }
 
-    public String decryptDes(SecretKey secKey, String encrypted, IvParameterSpec iv) throws Exception {
+    public static String decryptDes(SecretKey secKey, String encrypted, IvParameterSpec iv) throws Exception {
         byte[] decryptedBytes = null;
         try {
             Cipher desCipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
@@ -359,40 +360,19 @@ class Key {
         }
     }
 
-    public void readMessage(String input) throws Exception {
-        String antari1Base64 = input.split("\\.")[0];
-        String antari1 = new String(Base64.getDecoder().decode(antari1Base64));
-        try {
-            File f = new File(pa1 + input);
+    public static byte[] sign(String argumenti, String encryptedes) throws Exception {
+        Signature sign = Signature.getInstance("SHA256withRSA");
+        sign.initSign(returnPrivateKey(argumenti));
+        byte[] bytes = encryptedes.getBytes();
 
-            int count = input.length() - input.replaceAll("\\.", "").length();
-            String message = "";
+        sign.update(bytes);
+        byte[] signature = sign.sign();
 
-            if (count != 3 && f.isFile()) {
-                message = readFile(pa1 + input);
-            } else if (count == 3 && !f.isFile()) {
-                message = input;
-            } else {
-                System.out.println("Error: Fajlli ne dir. '" + input + "' nuk ekziston.");
-                System.exit(1);
-            }
-            antari1Base64 = message.split("\\.")[0];
-            antari1 = new String(Base64.getDecoder().decode(antari1Base64));
-            String antari2Base64 = message.split("\\.")[1];
-            byte[] antari2 = Base64.getDecoder().decode(antari2Base64);
-            IvParameterSpec iv = new IvParameterSpec(antari2);
-            String antari3Base64 = message.split("\\.")[2];
-            SecretKey secKey = decryptRsa(antari1, antari3Base64);
-            String antari4Base64 = message.split("\\.")[3];
-
-            String decrypt = decryptDes(secKey, antari4Base64, iv);
-            System.out.println("Marresi: " + antari1 + "\nMesazhi: " + decrypt);
-        } catch (Exception e) {
-            System.err.println("Gabim: Celesi privat 'keys/" + antari1 + ".xml' nuk ekziston.");
-        }
+        return signature;
     }
 
-    public PublicKey returnPublicKey(String argumenti) throws Exception {
+
+    public static PublicKey returnPublicKey(String argumenti) throws Exception {
         DocumentBuilderFactory factory1 = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory1.newDocumentBuilder();
 
@@ -420,7 +400,7 @@ class Key {
         return pubKey;
     }
 
-    public PrivateKey returnPrivateKey(String argumenti) throws Exception {
+    public static PrivateKey returnPrivateKey(String argumenti) throws Exception {
         DocumentBuilderFactory factory1 = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory1.newDocumentBuilder();
         File xmlPrivateFile = new File(pa + argumenti + ".xml");
