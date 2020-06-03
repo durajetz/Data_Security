@@ -51,16 +51,12 @@ public class Loginsystem {
         System.out.print("Jepni passwordin: ");
         String passi = input.nextLine();
 
-        Pattern fileExtnPtrn = Pattern.compile("(?=.*[0-9])(?=.*[a-z])(?=.*[@#$%^&+=_.!&-])(?=\\S+$).{6,}");
+        Pattern fileExtnPtrn = Pattern.compile("^(?=\\D*\\d)(?=[^a-z]*[a-z])[\\w~@#$%^&*+=`|{}:;!.?\\\"()\\[\\]-]{6,}$");
+
         Matcher mtch = fileExtnPtrn.matcher(passi);
 
-        if(passi.isEmpty()){
-            System.out.println("Gabim: Fjalkalimi nuk duhet te jet i zbrasur");
-            System.exit(1);
-        }
-
         if (!mtch.matches()) {
-            System.out.println("\nGabim: Fjalkalimi se paku duhet te permbaj " + "\n/ 6 karaktere" + "/ Nje numer" + " / Nje simbol");
+            System.out.println("Gabim: Fjalkalimi se paku duhet te permbaj " + "(6karaktere)" + "(1numer)" + "[simbol]");
             System.exit(1);
         }
 
@@ -68,7 +64,7 @@ public class Loginsystem {
         String passi1 = input.nextLine();
 
         if (!passi.equals(passi1)) {
-            System.out.println("Gabim: Fjalekalimet nuk perputhen.");
+            System.out.println("Gabim: Fjalkalimet nuk perputhen.");
             System.exit(1);
         }
 
@@ -120,7 +116,7 @@ public class Loginsystem {
 
                 if (bool) {
                     boolean paswordi = check(passi, line.split("\\s+|\n")[1]);
-                    if (paswordi == true) {
+                    if (paswordi) {
                         System.out.println(JWT.krijojwt(argumenti));
                     } else {
                         System.out.println("Gabim: Shfrytezuesi ose fjalekalimi i gabuar.");
@@ -128,11 +124,10 @@ public class Loginsystem {
                     }
                     break;
                 }
-
             }
             br.close();
         } catch (Exception e) {
-            System.err.println("Gabim: celesi '" + argumenti + "' nuk ekziston.");
+            System.out.println("Gabim: celesi '" + argumenti + "' nuk ekziston.");
         }
     }
 
