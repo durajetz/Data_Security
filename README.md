@@ -31,7 +31,7 @@ Për këtë projekt u përdorën:
 
 # Instruksionet
 ```bash
-$ clone https://github.com/aureldemiraj/ds-gr27-2020.git
+$ git clone https://github.com/aureldemiraj/ds-gr27-2020.git
 $ cd ds-gr27-2020/Projekti_Siguri
 $ ./ds.sh <komanda> <argumentet>
 ```
