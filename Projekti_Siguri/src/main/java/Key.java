@@ -360,6 +360,67 @@ class Key {
         }
     }
 
+    public static void readMessage(String input) throws Exception {
+        try {
+            File f = new File(pa1 + input);
+
+            int count = input.length() - input.replaceAll("\\.", "").length();
+            String message = "";
+
+            if (count != 3 && f.isFile()) {
+                message = readFile(pa1 + input);
+            } else if (count == 3 || count == 5 && !f.isFile()) {
+                message = input;
+            } else {
+                System.out.println("Error: Fajlli ne dir. '" + input + "' nuk ekziston.");
+                System.exit(1);
+            }
+
+            String antari1Base64 = message.split("\\.")[0];
+            String antari1 = new String(Base64.getDecoder().decode(antari1Base64));
+
+            File fcelsiencryptimit = new File(pa + antari1 + ".xml");
+            if (!fcelsiencryptimit.exists()) {
+                System.out.println("Gabim: Celesi privat 'keys/" + antari1 + "' nuk ekziston");
+                System.exit(1);
+            }
+
+            String antari2Base64 = message.split("\\.")[1];
+            byte[] antari2 = Base64.getDecoder().decode(antari2Base64);
+            IvParameterSpec iv = new IvParameterSpec(antari2);
+            String antari3Base64 = message.split("\\.")[2];
+            SecretKey secKey = decryptRsa(antari1, antari3Base64);
+            String antari4Base64 = message.split("\\.")[3];
+
+            String decrypt = decryptDes(secKey, antari4Base64, iv);
+
+            String threepart = "\nMarresi: " + antari1 + "\nMesazhi: " + decrypt;
+            System.out.println(threepart);
+
+            int count1 = message.length() - message.replaceAll("\\.", "").length();
+            if (count1 == 5) {
+                String derguesibase64 = message.split("\\.")[4];
+                String derguesi = new String(Base64.getDecoder().decode(derguesibase64));
+
+                String signature = message.split("\\.")[5];
+
+                File fcelesiperverifikim = new File(pa + derguesi + ".pub.xml");
+                if (!fcelesiperverifikim.exists()) {
+                    System.out.println("Derguesi: " + derguesi + "\nNenshkrimi: " + "mungon celesi publik 'keys/" + derguesi + ".pub.xml'");
+                    System.exit(1);
+                }
+
+                String verifikiminenshkrimit = (verify(derguesi, antari4Base64, Base64.getDecoder().decode(signature.getBytes())));
+
+                System.out.print("Derguesi: " + derguesi + "\nNenshkrimi: " + verifikiminenshkrimit);
+                System.exit(1);
+            } else System.exit(1);
+
+        } catch (Exception e) {
+            System.err.println("Gabim: Formati i tekstit te enkriptuar eshte jovalid.");
+        }
+    }
+
     public static byte[] sign(String argumenti, String encryptedes) throws Exception {
         Signature sign = Signature.getInstance("SHA256withRSA");
         sign.initSign(returnPrivateKey(argumenti));
