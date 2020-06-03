@@ -8,11 +8,13 @@ public class Case {
 
     }
 
+
     public static String upper(String s) {
         String st = s.toUpperCase();
         return st;
 
     }
+
 
     public static String inverse(String s) {
         char[] chars = s.toCharArray();
@@ -24,6 +26,7 @@ public class Case {
         return new String(chars);
     }
 
+
     public static String capitalize(String str){
         String words[]=str.split("\\s");
         String capitalizeWord="";
@@ -34,6 +37,7 @@ public class Case {
         }
         return capitalizeWord.trim();
     }
+
 
     public static String alternating(String s) {
         char[] chars = s.toCharArray();

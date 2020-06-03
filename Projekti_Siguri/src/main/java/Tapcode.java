@@ -1,3 +1,5 @@
+
+
 class Tapcode
 {
     public static void encode(String s)

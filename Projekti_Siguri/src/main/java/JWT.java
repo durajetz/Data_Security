@@ -15,7 +15,7 @@ public class JWT {
                     .setSubject(argumenti)
                     .setAudience("DataSecurity Project")
                     .setIssuedAt(Date.from(now))
-                    .setExpiration(Date.from(now.plus(2, ChronoUnit.MINUTES)))
+                    .setExpiration(Date.from(now.plus(20, ChronoUnit.MINUTES)))
                     .signWith(Key.returnPrivateKey(argumenti))
                     .compact();
         } catch (Exception e) {

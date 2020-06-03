@@ -421,6 +421,7 @@ class Key {
         }
     }
 
+
     public static byte[] sign(String argumenti, String encryptedes) throws Exception {
         Signature sign = Signature.getInstance("SHA256withRSA");
         sign.initSign(returnPrivateKey(argumenti));
@@ -431,7 +432,7 @@ class Key {
 
         return signature;
     }
-    
+
     public static String verify(String argumenti, String teksti, byte[] signature) throws Exception {
         Signature sign = Signature.getInstance("SHA256withRSA");
         byte[] bytes = teksti.getBytes();
@@ -444,8 +445,6 @@ class Key {
 
         return rez;
     }
-
-
 
     public static PublicKey returnPublicKey(String argumenti) throws Exception {
         DocumentBuilderFactory factory1 = DocumentBuilderFactory.newInstance();

@@ -1,3 +1,4 @@
+
 class Arguments {
 
     public static void count(String[] args) {
@@ -45,7 +46,7 @@ class Arguments {
                 Tapcode.decode(args[2]);
                 break;
             default:
-                System.out.println("Expect: <code> <encode|decode> <text>");
+                System.out.println("Expect: <tap-code> <encode|decode> <text>");
         }
     }
 
