@@ -41,7 +41,7 @@ class Key {
     static final String s = pa.replaceAll("/", "\\/");
     static final String NL = System.getProperty("line.separator");
 
-    public String getPrivateKeyAsXml(PrivateKey privateKey) throws Exception {
+    public static String getPrivateKeyAsXml(PrivateKey privateKey) throws Exception {
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
         RSAPrivateCrtKeySpec spec = keyFactory.getKeySpec(privateKey, RSAPrivateCrtKeySpec.class);
         StringBuilder sb = new StringBuilder();
@@ -60,7 +60,7 @@ class Key {
         return sb.toString();
     }
 
-    public String getPublicKeyAsXml(PublicKey publicKey) throws Exception {
+    public static String getPublicKeyAsXml(PublicKey publicKey) throws Exception {
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
         RSAPublicKeySpec spec = keyFactory.getKeySpec(publicKey, RSAPublicKeySpec.class);
         StringBuilder sb = new StringBuilder();
@@ -73,13 +73,13 @@ class Key {
         return sb.toString();
     }
 
-    public String getElement(String name, BigInteger bigInt) throws Exception {
+    public static String getElement(String name, BigInteger bigInt) throws Exception {
         byte[] bytesFromBigInt = getBytesFromBigInt(bigInt);
         String elementContent = getBase64(bytesFromBigInt);
         return String.format("  <%s>%s</%s>%s", name, elementContent, name, NL);
     }
 
-    public byte[] getBytesFromBigInt(BigInteger bigInt) {
+    public static byte[] getBytesFromBigInt(BigInteger bigInt) {
         byte[] bytes = bigInt.toByteArray();
         int length = bytes.length;
 
@@ -89,18 +89,18 @@ class Key {
         return bytes;
     }
 
-    public String getBase64(byte[] bytes) {
+    public static String getBase64(byte[] bytes) {
         return Base64.getEncoder().encodeToString(bytes);
     }
 
-    public KeyPair generateKey() throws NoSuchAlgorithmException {
+    public static KeyPair generateKey() throws NoSuchAlgorithmException {
         KeyPairGenerator kg = KeyPairGenerator.getInstance("RSA");
         kg.initialize(1024);
         KeyPair keyPair = kg.generateKeyPair();
         return keyPair;
     }
 
-    public void writeFile(String content, String path) throws Exception {
+    public static void writeFile(String content, String path) throws Exception {
         try {
             PrintWriter writer = new PrintWriter(path);
             writer.write(content);
