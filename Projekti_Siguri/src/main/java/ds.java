@@ -1,32 +1,37 @@
-
 public class ds {
     public static void main(String[] args) throws Exception {
-        Arguments arg = new Arguments();
 
-        if (args.length < 2 || args.length > 4) {
-            System.err.println("Wrong number of arguments provided!");
+        if (args.length < 1 || args.length > 6) {
+            System.err.println("Error: Invalid number of arguments provided!");
             System.exit(1);
         }
 
         if (args[0].equalsIgnoreCase("count")) {
-            arg.count(args);
+            Arguments.count(args);
         } else if (args[0].equalsIgnoreCase("tap-code")) {
-           arg.tapcode(args);
+            Arguments.tapcode(args);
         } else if (args[0].equalsIgnoreCase("case")) {
-            arg.casecmd(args);
+            Arguments.casecmd(args);
         } else if (args[0].equalsIgnoreCase("create-user")) {
-            arg.usercreate(args);
+            Arguments.usercreate(args);
         } else if (args[0].equalsIgnoreCase("delete-user")) {
-            arg.userdelete(args);
+            Arguments.userdelete(args);
+        } else if (args[0].equalsIgnoreCase("login")) {
+            Arguments.login(args);
+        }else if (args[0].equalsIgnoreCase("status")) {
+            Arguments.status(args);
         } else if (args[0].equalsIgnoreCase("export-key")) {
-            arg.exportkey(args);
+            Arguments.exportkey(args);
         } else if (args[0].equalsIgnoreCase("import-key")) {
-            arg.importkey(args);
+            Arguments.importkey(args);
         } else if (args[0].equalsIgnoreCase("write-message")) {
-            arg.writemessage(args);
+            Arguments.writemessage(args);
         } else if (args[0].equalsIgnoreCase("read-message")) {
-            arg.readmessage(args);
-        } else System.out.println("Invalid command!");
+            Arguments.readmessage(args);
+        } else {
+            System.out.println("Error: Invalid command!\nExpect: <count|case|tap-code|create-user|delete-user|login|status|export-key|import-key|write-message|read-message");
+            System.exit(1);
+        }
     }
 
 }
