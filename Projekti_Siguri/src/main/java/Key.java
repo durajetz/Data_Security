@@ -431,6 +431,20 @@ class Key {
 
         return signature;
     }
+    
+    public static String verify(String argumenti, String teksti, byte[] signature) throws Exception {
+        Signature sign = Signature.getInstance("SHA256withRSA");
+        byte[] bytes = teksti.getBytes();
+
+        sign.initVerify(returnPublicKey(argumenti));
+        sign.update(bytes);
+        boolean bool = sign.verify(signature);
+
+        String rez = bool ? "Valid" : "Jo valid";
+
+        return rez;
+    }
+
 
 
     public static PublicKey returnPublicKey(String argumenti) throws Exception {
