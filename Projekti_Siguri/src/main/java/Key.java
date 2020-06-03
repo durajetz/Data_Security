@@ -79,7 +79,7 @@ class Key {
         return String.format("  <%s>%s</%s>%s", name, elementContent, name, NL);
     }
 
-    public byte[] getBytesFromBigInt(BigInteger bigInt) {
+    public static byte[] getBytesFromBigInt(BigInteger bigInt) {
         byte[] bytes = bigInt.toByteArray();
         int length = bytes.length;
 
