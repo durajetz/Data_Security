@@ -29,12 +29,8 @@ public class JWT {
         Jws<Claims> result = null;
 
         try {
-            int i = jwt.lastIndexOf('.');
-            String withoutSignature = jwt.substring(0, i + 1);
-            Jwt<Header, Claims> untrusted = Jwts.parser().parseClaimsJwt(withoutSignature);
-            String subject = untrusted.getBody().getSubject();
             result = Jwts.parser()
-                    .setSigningKey(Key.returnPublicKey(subject))
+                    .setSigningKey(Key.returnPublicKey(kthesubject(jwt)))
                     .parseClaimsJws(jwt);
 
             // System.out.println(result);  mi shfaq headerin,body,signaturen e JWT
