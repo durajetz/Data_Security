@@ -289,9 +289,9 @@ $ ./ds.sh case upper "Pershendetje nga FIEK!"```</br><img src="https://images2.i
 * [Aurel Demiraj](mailto:aureldem1@outlook.com)
 * [Besar Pallush](mailto:besarp5@gmail.com)
 * [Durajet Mustafa](mailto:eti1375@gmail.com)
-
 ___
-<small><i>Përshkrimi i projektit (<a href='https://www.dropbox.com/s/aryposlxmi1qctk/grupi-27.pdf?dl=0'>Faza1</a>,<a href='https://www.dropbox.com/s/8go31knlafn55t8/ds_projekti_2.pdf?dl=0'>Faza2</a>,<a href='https://www.dropbox.com/s/vstgk48exodcotg/ds_projekti_3.pdf?dl=0'>Faza3</a>)</i> </br>Regards Grupi27 (Sferat e Dragoit).</small>
+<small><i>Përshkrimi i projektit (<a href='https://www.dropbox.com/s/aryposlxmi1qctk/grupi-27.pdf?dl=0'>Faza1</a>,<a href='https://www.dropbox.com/s/8go31knlafn55t8/ds_projekti_2.pdf?dl=0'>Faza2</a>,<a href='https://www.dropbox.com/s/vstgk48exodcotg/ds_projekti_3.pdf?dl=0'>Faza3</a>)</i> </br>Regards Grupi27 (Sferat e Dragoit).</br>University of Prishtina "Hasan Prishtina",</br>
+Department: <i>Computer Engineering.</i></small>
 
 
 
