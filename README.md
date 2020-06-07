@@ -31,17 +31,17 @@ Për këtë projekt u përdorën:
 
 # Instruksionet
 ```bash
-$ git clone https://github.com/aureldemiraj/ds-gr27-2020.git
-$ cd ds-gr27-2020/Projekti_Siguri
+$ git clone https://github.com/durajetz/Data_Security
+$ cd Data_Security/Projekti_Siguri
 $ ./ds.sh <komanda> <argumentet>
 ```
 
 ```bash
-test@user MINGW64 ~/.../ds-gr27-2020/Projekti_Siguri
+test@user MINGW64 ~/.../Data_Security/Projekti_Siguri
 $ ./ds.sh create-user test
 ```
 
-> Skripta ./ds.sh.sh përmban kodin për ekzekutimin e ./ds.sh.jar (jar file qe e ka një main class me anë të së cilës mundet me u exec programi).
+> Skripta ./ds.sh përmban kodin për ekzekutimin e ds.jar (jar file qe e ka një main class me anë të së cilës mundet me u exec programi).
 
 
 
@@ -55,6 +55,7 @@ komanda|lines,words, letters, symbols,vowels, consonants,sentences | **Përshën
 
 <p align="center"><b><em>Sintaksa :</em></b></br>
 <p align="center"><img src="https://images2.imagebam.com/76/93/f9/c0f9341337430291.png" alt="sintaksa" style="width: 250px;"/></p>
+
 **Shembull:**
 
 ```$ ./ds.sh count lines "Pershendetje nga FIEK!"```</br>
